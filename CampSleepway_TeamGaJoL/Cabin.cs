@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CampSleepway_TeamGaJoL
 {
-    internal class Cabin
+    public class Cabin
     {
-
+        public int Id {  get; set; }
     }
 }
