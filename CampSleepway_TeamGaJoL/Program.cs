@@ -1,4 +1,6 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿// Gabriel Wedin
+//Lillebjörn Söderberg
+//Johannes Sirugo
 
 Console.WriteLine("Hejsan värld!");
 Console.WriteLine("Messmör");
