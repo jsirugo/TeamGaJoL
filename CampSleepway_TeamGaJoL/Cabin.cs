@@ -8,5 +8,6 @@ namespace CampSleepway_TeamGaJoL
 {
     internal class Cabin
     {
+
     }
 }

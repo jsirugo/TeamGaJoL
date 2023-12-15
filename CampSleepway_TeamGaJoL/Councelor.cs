@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CampSleepway_TeamGaJoL
 {
-    internal class Councelor
+    public class Councelor : Person
     {
     }
 }
