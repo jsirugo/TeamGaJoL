@@ -7,8 +7,10 @@ namespace CampSleepway_TeamGaJoL
     public class CampSleepawayContext :DbContext
     {
         public DbSet<Person> Persons { get; set; }
-
-
+        public DbSet<Councelor> Councelors { get; set; }
+        public DbSet<NextOfKin> NextOfKins { get; set; }
+        public DbSet<Camper> Campers { get; set; }
+        public DbSet<Cabin> Cabins { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var configuration = new ConfigurationBuilder()
