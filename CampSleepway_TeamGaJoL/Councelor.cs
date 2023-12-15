@@ -8,5 +8,6 @@ namespace CampSleepway_TeamGaJoL
 {
     public class Councelor : Person
     {
+        public int CouncelorId { get; set; }
     }
 }

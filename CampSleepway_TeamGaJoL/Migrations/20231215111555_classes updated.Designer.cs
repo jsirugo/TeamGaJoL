@@ -3,6 +3,7 @@ using CampSleepway_TeamGaJoL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CampSleepway_TeamGaJoL.Migrations
 {
     [DbContext(typeof(CampSleepawayContext))]
-    partial class CampSleepawayContextModelSnapshot : ModelSnapshot
+    [Migration("20231215111555_classes updated")]
+    partial class classesupdated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

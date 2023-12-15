@@ -8,6 +8,7 @@ namespace CampSleepway_TeamGaJoL
 {
     public class Camper : Person
     {
+        public int CamperId { get; set; }
         public int startDate {  get; set; }
         public int endDate { get; set; }
     }
