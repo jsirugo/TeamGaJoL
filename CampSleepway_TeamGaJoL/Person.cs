@@ -2,8 +2,7 @@
 
 namespace CampSleepway_TeamGaJoL
 {
-    [Table("Person")]
-    public  class Person
+     public  class Person
     {
         public int Id { get; set; }
         public required string FirstName { get; set; }  

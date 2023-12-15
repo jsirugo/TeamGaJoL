@@ -9,7 +9,6 @@ namespace CampSleepway_TeamGaJoL
 {
     public class Camper : Person
     {
-
         //Min age 6, max age 18
         public int CamperId { get; set; }
         public int startDate {  get; set; }
@@ -17,5 +16,6 @@ namespace CampSleepway_TeamGaJoL
         public int CabinId { get; set; }
         public Cabin Cabin { get; set; }
         public List<NextOfKin> NextOfKins { get; set; }
+
     }
 }
