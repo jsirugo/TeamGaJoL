@@ -1,6 +1,6 @@
 ﻿namespace CampSleepway_TeamGaJoL
 {
-    public  class Person
+    public class Person
     {
         public int Id { get; set; }
         public required string FirstName { get; set; }  
