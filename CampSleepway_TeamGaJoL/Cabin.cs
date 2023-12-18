@@ -8,6 +8,6 @@ namespace CampSleepway_TeamGaJoL
 {
     public class Cabin
     {
-        public int CabinId {  get; set; }
+        public int CabinId {get; set; }
     }
 }

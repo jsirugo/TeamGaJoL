@@ -11,5 +11,8 @@ namespace CampSleepway_TeamGaJoL
         public int CamperId { get; set; }
         public int startDate {  get; set; }
         public int endDate { get; set; }
+
+        public int PersonId { get; set; }
+        public Person? Person { get; set; }
     }
 }

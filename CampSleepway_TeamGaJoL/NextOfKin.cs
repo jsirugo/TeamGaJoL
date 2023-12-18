@@ -9,7 +9,7 @@ namespace CampSleepway_TeamGaJoL
     public class NextOfKin : Person
     {
         public int NextOfKinId { get; set; }
-        public required int  CamperId { get; set; }
-        public required Camper Camper { get; set; }  //reference navigation to camper
+        public int PersonId { get; set; }
+        public Person? Person { get; set; }
     }
 }

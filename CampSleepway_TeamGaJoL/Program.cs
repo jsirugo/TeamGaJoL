@@ -1,4 +1,5 @@
-﻿// Gabriel Wedin
+﻿using Microsoft.EntityFrameworkCore;
+// Gabriel Wedin
 //Lillebjörn Söderberg
 //Johannes Sirugo
 

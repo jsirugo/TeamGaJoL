@@ -3,6 +3,7 @@ using CampSleepway_TeamGaJoL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CampSleepway_TeamGaJoL.Migrations
 {
     [DbContext(typeof(CampSleepawayContext))]
-    partial class CampSleepawayContextModelSnapshot : ModelSnapshot
+    [Migration("20231218135427_test5")]
+    partial class test5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,6 +45,11 @@ namespace CampSleepway_TeamGaJoL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -56,20 +64,16 @@ namespace CampSleepway_TeamGaJoL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Persons", (string)null);
+                    b.ToTable("Persons");
 
-                    b.UseTptMappingStrategy();
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Person");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("CampSleepway_TeamGaJoL.Camper", b =>
                 {
                     b.HasBaseType("CampSleepway_TeamGaJoL.Person");
-
-                    b.Property<int>("CamperId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PersonId")
-                        .HasColumnType("int");
 
                     b.Property<int>("endDate")
                         .HasColumnType("int");
@@ -77,9 +81,7 @@ namespace CampSleepway_TeamGaJoL.Migrations
                     b.Property<int>("startDate")
                         .HasColumnType("int");
 
-                    b.HasIndex("PersonId");
-
-                    b.ToTable("Campers", (string)null);
+                    b.HasDiscriminator().HasValue("Camper");
                 });
 
             modelBuilder.Entity("CampSleepway_TeamGaJoL.Councelor", b =>
@@ -89,78 +91,33 @@ namespace CampSleepway_TeamGaJoL.Migrations
                     b.Property<int>("CouncelorId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PersonId")
-                        .HasColumnType("int");
-
-                    b.HasIndex("PersonId");
-
-                    b.ToTable("Councelors", (string)null);
+                    b.HasDiscriminator().HasValue("Councelor");
                 });
 
             modelBuilder.Entity("CampSleepway_TeamGaJoL.NextOfKin", b =>
                 {
                     b.HasBaseType("CampSleepway_TeamGaJoL.Person");
 
+                    b.Property<int>("CamperId")
+                        .HasColumnType("int");
+
                     b.Property<int>("NextOfKinId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PersonId")
-                        .HasColumnType("int");
+                    b.HasIndex("CamperId");
 
-                    b.HasIndex("PersonId");
-
-                    b.ToTable("NextOfKins", (string)null);
-                });
-
-            modelBuilder.Entity("CampSleepway_TeamGaJoL.Camper", b =>
-                {
-                    b.HasOne("CampSleepway_TeamGaJoL.Person", null)
-                        .WithOne()
-                        .HasForeignKey("CampSleepway_TeamGaJoL.Camper", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CampSleepway_TeamGaJoL.Person", "Person")
-                        .WithMany()
-                        .HasForeignKey("PersonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Person");
-                });
-
-            modelBuilder.Entity("CampSleepway_TeamGaJoL.Councelor", b =>
-                {
-                    b.HasOne("CampSleepway_TeamGaJoL.Person", null)
-                        .WithOne()
-                        .HasForeignKey("CampSleepway_TeamGaJoL.Councelor", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CampSleepway_TeamGaJoL.Person", "Person")
-                        .WithMany()
-                        .HasForeignKey("PersonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Person");
+                    b.HasDiscriminator().HasValue("NextOfKin");
                 });
 
             modelBuilder.Entity("CampSleepway_TeamGaJoL.NextOfKin", b =>
                 {
-                    b.HasOne("CampSleepway_TeamGaJoL.Person", null)
-                        .WithOne()
-                        .HasForeignKey("CampSleepway_TeamGaJoL.NextOfKin", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CampSleepway_TeamGaJoL.Person", "Person")
+                    b.HasOne("CampSleepway_TeamGaJoL.Camper", "Camper")
                         .WithMany()
-                        .HasForeignKey("PersonId")
+                        .HasForeignKey("CamperId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Person");
+                    b.Navigation("Camper");
                 });
 #pragma warning restore 612, 618
         }
