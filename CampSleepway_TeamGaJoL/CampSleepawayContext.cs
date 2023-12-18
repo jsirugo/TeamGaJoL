@@ -19,8 +19,6 @@ namespace CampSleepway_TeamGaJoL
             modelBuilder.Entity<Counselor>().ToTable("Councelors");
             modelBuilder.Entity<NextOfKin>().ToTable("NextOfKins");
 
-
-
         }
            
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -8,6 +8,8 @@ namespace CampSleepway_TeamGaJoL
 {
     public class Cabin 
     {
+
+        public required int CounselorId { get; set; }    
         public int CabinId {get; set; }
 
         public List<Camper>? Campers { get; set; }

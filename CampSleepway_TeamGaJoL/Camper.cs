@@ -15,7 +15,5 @@ namespace CampSleepway_TeamGaJoL
         [Required]
         public int EndDate { get; set; }
 
-    
-       
     }
 }
