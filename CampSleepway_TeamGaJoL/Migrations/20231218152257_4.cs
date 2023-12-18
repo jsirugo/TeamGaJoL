@@ -5,24 +5,25 @@
 namespace CampSleepway_TeamGaJoL.Migrations
 {
     /// <inheritdoc />
-    public partial class test5 : Migration
+    public partial class _4 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "CamperId1",
-                table: "Persons");
+            migrationBuilder.AddColumn<int>(
+                name: "CamperId",
+                table: "NextOfKins",
+                type: "int",
+                nullable: false,
+                defaultValue: 0);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<int>(
-                name: "CamperId1",
-                table: "Persons",
-                type: "int",
-                nullable: true);
+            migrationBuilder.DropColumn(
+                name: "CamperId",
+                table: "NextOfKins");
         }
     }
 }

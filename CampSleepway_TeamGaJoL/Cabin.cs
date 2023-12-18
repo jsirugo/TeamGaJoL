@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace CampSleepway_TeamGaJoL
 {
-    public class Cabin
+    public class Cabin 
     {
         public int CabinId {get; set; }
+
+        public List<Camper>? Campers { get; set; }
     }
 }
