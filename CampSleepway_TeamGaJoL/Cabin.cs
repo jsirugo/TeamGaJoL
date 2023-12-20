@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CampSleepway_TeamGaJoL
 {
-    public class Cabin 
+    public class Cabin
     {
         //For program purpose, maximum 3 cabins
         public int CabinId { get; set; }
