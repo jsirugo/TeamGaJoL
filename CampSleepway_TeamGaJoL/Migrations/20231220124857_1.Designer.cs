@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CampSleepway_TeamGaJoL.Migrations
 {
     [DbContext(typeof(CampSleepawayContext))]
-    [Migration("20231220123804_1")]
+    [Migration("20231220124857_1")]
     partial class _1
     {
         /// <inheritdoc />
@@ -120,11 +120,6 @@ namespace CampSleepway_TeamGaJoL.Migrations
                     b.Property<int>("CamperId")
                         .HasColumnType("int");
 
-                    b.Property<int>("NextOfKinId")
-                        .HasColumnType("int");
-
-                    b.HasIndex("CamperId");
-
                     b.ToTable("NextOfKins", (string)null);
                 });
 
@@ -158,19 +153,11 @@ namespace CampSleepway_TeamGaJoL.Migrations
 
             modelBuilder.Entity("CampSleepway_TeamGaJoL.NextOfKin", b =>
                 {
-                    b.HasOne("CampSleepway_TeamGaJoL.Camper", "Camper")
-                        .WithMany()
-                        .HasForeignKey("CamperId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("CampSleepway_TeamGaJoL.Person", null)
                         .WithOne()
                         .HasForeignKey("CampSleepway_TeamGaJoL.NextOfKin", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Camper");
                 });
 
             modelBuilder.Entity("CampSleepway_TeamGaJoL.Cabin", b =>

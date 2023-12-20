@@ -96,18 +96,11 @@ namespace CampSleepway_TeamGaJoL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
-                    NextOfKinId = table.Column<int>(type: "int", nullable: false),
                     CamperId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_NextOfKins", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_NextOfKins_Campers_CamperId",
-                        column: x => x.CamperId,
-                        principalTable: "Campers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_NextOfKins_Persons_Id",
                         column: x => x.Id,
@@ -127,24 +120,19 @@ namespace CampSleepway_TeamGaJoL.Migrations
                 column: "CabinId",
                 unique: true,
                 filter: "[CabinId] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_NextOfKins_CamperId",
-                table: "NextOfKins",
-                column: "CamperId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Campers");
+
+            migrationBuilder.DropTable(
                 name: "Councelors");
 
             migrationBuilder.DropTable(
                 name: "NextOfKins");
-
-            migrationBuilder.DropTable(
-                name: "Campers");
 
             migrationBuilder.DropTable(
                 name: "Cabins");
