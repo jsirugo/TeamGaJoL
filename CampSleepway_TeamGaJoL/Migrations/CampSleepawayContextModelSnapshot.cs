@@ -32,7 +32,7 @@ namespace CampSleepway_TeamGaJoL.Migrations
 
                     b.HasKey("CabinId");
 
-                    b.ToTable("Cabins");
+                    b.ToTable("Cabins", (string)null);
                 });
 
             modelBuilder.Entity("CampSleepway_TeamGaJoL.Person", b =>

@@ -1,16 +1,47 @@
-﻿
 ﻿using CampSleepway_TeamGaJoL;
 using Microsoft.EntityFrameworkCore;
 
-Console.WriteLine("Hello world");
+using var context = new CampSleepawayContext();
+var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Camperlist.csv");
+var persons = ReadCSV("Camperlist.csv");
+Console.WriteLine($"{persons.Count} rader hittade i CSV filen");
+static List<Person> ReadCSV(string filePath)
+{
+    var persons = new List<Person>();
 
+    using var reader = new StreamReader(filePath);
 
-// Gabriel Wedin
-//Lillebjörn Söderberg
-//Johannes Sirugo /////
+    var headerLine = reader.ReadLine();
 
-Console.WriteLine("Hejsan värld!");
-Console.WriteLine("Messmör");
-Console.WriteLine("Capo");
-Console.WriteLine("WO IST MEIN PAKET?!");
+    while (!reader.EndOfStream)
+    {
+        var line = reader.ReadLine();
+        if (line == null)
+        {
+            break;
+        }
+        var values = line.Split(',');
 
+        if (values.Length == 5)
+        {
+            var firstName = values[0];
+            var lastName = values[1];
+            var phoneNumber = values[2];
+            var sex = values[3];
+            var age = int.Parse(values[4]); 
+
+            var person = new Person
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                PhoneNumber = phoneNumber,
+                Sex = sex,
+                Age = age
+            };
+
+            persons.Add(person); 
+        }
+    }
+
+    return persons;
+}
