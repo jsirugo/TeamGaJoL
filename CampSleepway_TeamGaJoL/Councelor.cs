@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CampSleepway_TeamGaJoL
 {
-    public class Councelor : Person
+    public class Counselor : Person
     {
         //Min age 18, must relate one to one cabin per councelor
         public int CouncelorId { get; set; }

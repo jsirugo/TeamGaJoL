@@ -4,6 +4,7 @@ using CampSleepway_TeamGaJoL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CampSleepway_TeamGaJoL.Migrations
 {
     [DbContext(typeof(CampSleepawayContext))]
-    partial class CampSleepawayContextModelSnapshot : ModelSnapshot
+    [Migration("20231218152640_5")]
+    partial class _5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,14 +49,6 @@ namespace CampSleepway_TeamGaJoL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasMaxLength(13)
-                        .HasColumnType("nvarchar(13)");
-
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -66,13 +61,9 @@ namespace CampSleepway_TeamGaJoL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Sex")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
-                    b.ToTable("Person");
+                    b.ToTable("Persons", (string)null);
 
                     b.UseTptMappingStrategy();
                 });
@@ -81,7 +72,7 @@ namespace CampSleepway_TeamGaJoL.Migrations
                 {
                     b.HasBaseType("CampSleepway_TeamGaJoL.Person");
 
-                    b.Property<int>("CabinId")
+                    b.Property<int?>("CabinId")
                         .HasColumnType("int");
 
                     b.Property<int>("CamperId")
@@ -95,15 +86,6 @@ namespace CampSleepway_TeamGaJoL.Migrations
 
                     b.HasIndex("CabinId");
 
-                    b.ToTable("Person", t =>
-                        {
-                            t.Property("CabinId")
-                                .HasColumnName("Camper_CabinId");
-
-                            t.Property("CamperId")
-                                .HasColumnName("CamperId1");
-                        });
-
                     b.ToTable("Campers", (string)null);
                 });
 
@@ -111,19 +93,16 @@ namespace CampSleepway_TeamGaJoL.Migrations
                 {
                     b.HasBaseType("CampSleepway_TeamGaJoL.Person");
 
-                    b.Property<int>("CabinId")
+                    b.Property<int>("CounselorId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CouncelorId")
+                    b.Property<int>("EndDate")
                         .HasColumnType("int");
 
-                    b.HasIndex("CabinId")
-                        .IsUnique()
-                        .HasFilter("[CabinId] IS NOT NULL");
+                    b.Property<int>("StartDate")
+                        .HasColumnType("int");
 
-                    b.ToTable("Person");
-
-                    b.HasDiscriminator().HasValue("Councelor");
+                    b.ToTable("Councelors", (string)null);
                 });
 
             modelBuilder.Entity("CampSleepway_TeamGaJoL.NextOfKin", b =>
@@ -139,38 +118,33 @@ namespace CampSleepway_TeamGaJoL.Migrations
                     b.ToTable("NextOfKins", (string)null);
                 });
 
-                    b.ToTable("Person");
-
-                    b.HasDiscriminator().HasValue("NextOfKin");
-                });
-
             modelBuilder.Entity("CampSleepway_TeamGaJoL.Camper", b =>
                 {
-                    b.HasOne("CampSleepway_TeamGaJoL.Cabin", "Cabin")
+                    b.HasOne("CampSleepway_TeamGaJoL.Cabin", null)
                         .WithMany("Campers")
-                        .HasForeignKey("CabinId")
+                        .HasForeignKey("CabinId");
+
+                    b.HasOne("CampSleepway_TeamGaJoL.Person", null)
+                        .WithOne()
+                        .HasForeignKey("CampSleepway_TeamGaJoL.Camper", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Cabin");
                 });
 
-            modelBuilder.Entity("CampSleepway_TeamGaJoL.Councelor", b =>
+            modelBuilder.Entity("CampSleepway_TeamGaJoL.Counselor", b =>
                 {
-                    b.HasOne("CampSleepway_TeamGaJoL.Cabin", "Cabin")
-                        .WithOne("Councelor")
-                        .HasForeignKey("CampSleepway_TeamGaJoL.Councelor", "CabinId")
+                    b.HasOne("CampSleepway_TeamGaJoL.Person", null)
+                        .WithOne()
+                        .HasForeignKey("CampSleepway_TeamGaJoL.Counselor", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Cabin");
                 });
 
             modelBuilder.Entity("CampSleepway_TeamGaJoL.NextOfKin", b =>
                 {
-                    b.HasOne("CampSleepway_TeamGaJoL.Camper", "Camper")
-                        .WithMany("NextOfKins")
-                        .HasForeignKey("CamperId")
+                    b.HasOne("CampSleepway_TeamGaJoL.Person", null)
+                        .WithOne()
+                        .HasForeignKey("CampSleepway_TeamGaJoL.NextOfKin", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -178,19 +152,6 @@ namespace CampSleepway_TeamGaJoL.Migrations
             modelBuilder.Entity("CampSleepway_TeamGaJoL.Cabin", b =>
                 {
                     b.Navigation("Campers");
-                });
-
-            modelBuilder.Entity("CampSleepway_TeamGaJoL.Cabin", b =>
-                {
-                    b.Navigation("Campers");
-
-                    b.Navigation("Councelor")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("CampSleepway_TeamGaJoL.Camper", b =>
-                {
-                    b.Navigation("NextOfKins");
                 });
 #pragma warning restore 612, 618
         }

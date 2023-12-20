@@ -10,7 +10,11 @@ namespace CampSleepway_TeamGaJoL
     public class NextOfKin : Person
     {
         public int NextOfKinId { get; set; }
-        public required int  CamperId { get; set; }
-        public required Camper Camper { get; set; }  //reference navigation to camper
+
+        // Foreign key to Camper
+        public int CamperId { get; set; }
+
+        // Navigation property to Camper
+      //  public virtual Camper Camper { get; set; }
     }
 }
