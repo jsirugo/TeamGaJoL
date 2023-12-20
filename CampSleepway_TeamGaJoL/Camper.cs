@@ -10,10 +10,10 @@ namespace CampSleepway_TeamGaJoL
 {
     public class Camper : Person
     {
-        public int CounselorId { get; set; }
-        [Required]
-        public int StartDate { get; set; }
-        [Required]
-        public int EndDate { get; set; }
+
+        public DateTime StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
+
+        public List<NextOfKin>? NextofKins { get; set; } // får ha nextofkin, måste inte
     }
 }

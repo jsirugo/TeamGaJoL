@@ -9,6 +9,9 @@ namespace CampSleepway_TeamGaJoL
 {
     public class NextOfKin : Person
     {
-        public int CamperId { get; set; }
+        public virtual Camper? Camper { get; set; } // måste vara ansluten till en camper
+        public int? CouncelorId { get; set; } // FÅR vara ansluten till en camper, måste ej
+        public virtual Councelor? Councelor { get; set; }// FÅR vara ansluten till en camper, måste ej
+
     }
 }

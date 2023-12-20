@@ -14,6 +14,7 @@ Console.WriteLine($"{persons.Count} rader hittade i CSV filen");
 //Console.WriteLine("Personer tillagda i listan");
 static List<Person> ReadCSV(string filePath)
 {
+    
     var persons = new List<Person>();
 
     using var reader = new StreamReader(filePath);
@@ -22,6 +23,7 @@ static List<Person> ReadCSV(string filePath)
 
     while (!reader.EndOfStream)
     {
+        
         var line = reader.ReadLine();
         if (line == null)
         {
@@ -35,10 +37,11 @@ static List<Person> ReadCSV(string filePath)
             var lastName = values[1];
             var phoneNumber = values[2];
             var sex = values[3];
-            var age = int.Parse(values[4]); 
+            var age = int.Parse(values[4]);
 
             var person = new Person
             {
+                
                 FirstName = firstName,
                 LastName = lastName,
                 PhoneNumber = phoneNumber,
