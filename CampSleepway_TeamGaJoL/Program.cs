@@ -5,6 +5,13 @@ using var context = new CampSleepawayContext();
 var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Camperlist.csv");
 var persons = ReadCSV("Camperlist.csv");
 Console.WriteLine($"{persons.Count} rader hittade i CSV filen");
+//Kör enbart ifall personer inte är tillagda i eran list
+//foreach (var person in persons)
+//{
+//    context.Persons.Add(person);
+//}
+//context.SaveChanges();
+//Console.WriteLine("Personer tillagda i listan");
 static List<Person> ReadCSV(string filePath)
 {
     var persons = new List<Person>();
@@ -42,6 +49,5 @@ static List<Person> ReadCSV(string filePath)
             persons.Add(person); 
         }
     }
-
     return persons;
 }
