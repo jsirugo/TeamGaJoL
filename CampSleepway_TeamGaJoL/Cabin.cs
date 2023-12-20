@@ -8,10 +8,8 @@ namespace CampSleepway_TeamGaJoL
 {
     public class Cabin
     {
-        //For program purpose, maximum 3 cabins
-        public int CabinId { get; set; }
+        public int CabinId {get; set; }
         public List<Camper> Campers { get; set; }
         public Councelor Councelor { get; set; }
-
     }
 }
