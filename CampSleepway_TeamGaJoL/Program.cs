@@ -5,11 +5,24 @@ class Program
 {
     static void Main()
     {
+        int option = MainMenu.ShowMenu("Welcome to Camp Sleepaway! What do you want to do?", new[]
+        {
+            "Add person to database", // Potentiellt lägga in så man kan ange csv fil att läsas in utöver att mata in manuellt
+            "Assign a camper to a cabin",
+            "Remove a camper from the camp",
+            "Search for campers in Camp Sleepaway",
+            "Show a list of all campers sorted on cabins",
+            "xxxxxxxxxxxx",
+            "xxxxxxxxxxxx"
+        }
 
+
+
+        );
         using var context = new CampSleepawayContext();
         var filePath = Path.Combine(Directory.GetCurrentDirectory(), "People.csv");
-        var persons = ReadCSV("People.csv");
-        Console.WriteLine($"{persons.Count} rader hittade i CSV filen");
+       // var persons = ReadCSV("People.csv");
+      //  Console.WriteLine($"{persons.Count} rader hittade i CSV filen");
         //Kör enbart ifall personer inte är tillagda i eran list
         //foreach (var person in persons)
         //{
@@ -18,8 +31,8 @@ class Program
         //context.SaveChanges();
         //Console.WriteLine("Personer tillagda i listan");
 
-        context.AddRange(persons);
-        context.SaveChanges();
+       // context.AddRange(persons);
+      //  context.SaveChanges();
         static List<Person> ReadCSV(string filePath)
         {
             var persons = new List<Person>();
