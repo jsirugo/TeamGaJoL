@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace CampSleepway_TeamGaJoL
     {
         public int CabinId { get; set; }
         public List<Camper> Campers { get; set; }
-        public Councelor Councelor { get; set; }
+
+        public Councelor? Councelor { get; set; }
     }
 }
