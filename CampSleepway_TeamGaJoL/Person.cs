@@ -1,9 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CampSleepway_TeamGaJoL
 {
      public  class Person
     {
+        [Key]
         public int Id { get; set; }
         public required string FirstName { get; set; }  
         public required string LastName { get; set; }
