@@ -5,6 +5,9 @@ class Program
 {
     static void Main()
     {
+        bool running = true;
+        while(running)
+        {
         int option = MainMenu.ShowMenu("Welcome to Camp Sleepaway! What do you want to do?", new[]
         {
             "Add person to database", // Potentiellt lägga in så man kan ange csv fil att läsas in utöver att mata in manuellt
@@ -12,13 +15,27 @@ class Program
             "Remove a camper from the camp",
             "Search for campers in Camp Sleepaway",
             "Show a list of all campers sorted on cabins",
-            "xxxxxxxxxxxx",
-            "xxxxxxxxxxxx"
+            "Exit", // int 5
+           
         }
-
-
+        
 
         );
+
+        if (option == 0)
+        {
+            CampSleepawayContext dbContext = new CampSleepawayContext(); 
+
+            AddPerson addPerson = new AddPerson(dbContext);
+
+          
+            addPerson.AddPersonToDatabase();
+        };
+
+            if(option == 5) { running = false; }
+
+
+        }
         using var context = new CampSleepawayContext();
         var filePath = Path.Combine(Directory.GetCurrentDirectory(), "People.csv");
        // var persons = ReadCSV("People.csv");
