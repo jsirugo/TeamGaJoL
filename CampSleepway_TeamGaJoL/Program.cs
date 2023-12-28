@@ -30,7 +30,37 @@ class Program
 
           
             addPerson.AddPersonToDatabase();
-        };
+        }
+            if(option == 1)
+            {
+                CampSleepawayContext dbContext = new CampSleepawayContext();
+                CabinManager assignperson = new CabinManager(dbContext);
+                Console.WriteLine("Who do you want to assign to a cabin?");
+                var persons = dbContext.Persons.ToList();
+                foreach (var person in persons)
+                {
+                    if (person is Councelor councelor) { Console.WriteLine($"{person.Id}. {person.FirstName} {person.LastName}" + " (Councelor)"); } // visar att person är councelor om så är fallet
+
+                    else
+                    {
+                        Console.WriteLine($"{person.Id}. {person.FirstName} {person.LastName}");
+                    }
+                }
+                int personId = int.Parse(Console.ReadLine());
+                var selectedPerson = persons.FirstOrDefault(p => p.Id == personId);
+
+                if (selectedPerson != null)
+                {
+                    var cabinAssignmentManager = new CabinManager(dbContext);
+                    cabinAssignmentManager.AssignToCabin(selectedPerson);
+                    Console.WriteLine($"Successfully assigned {selectedPerson.FirstName} {selectedPerson.LastName} to a cabin.");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid person Id. Assignment failed.");
+                }
+
+            }
 
             if(option == 5) { running = false; }
 

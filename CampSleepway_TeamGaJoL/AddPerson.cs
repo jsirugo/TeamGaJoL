@@ -139,7 +139,7 @@ namespace CampSleepway_TeamGaJoL
 
 
             var selectedCamper = campers.FirstOrDefault(c => c.Id == camperId);
-            if (selectedCamper == null)
+            if (selectedCamper == null || camperId > campers.Count || camperId < campers.Count) // om strul ta bort dessa två senaste villkoren ) x<x||x >x
             {
                 Console.WriteLine("Invalid Camper Id. NextOfKin needs to be connected to a camper. Returning.");
                 return;
