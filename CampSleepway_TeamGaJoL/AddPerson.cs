@@ -17,9 +17,9 @@ namespace CampSleepway_TeamGaJoL
 
         public void AddPersonToDatabase()
         {
+            Console.Clear();
             try
             {
-
 
             Console.WriteLine("Enter person details:");
 
@@ -88,6 +88,8 @@ namespace CampSleepway_TeamGaJoL
             contextfile.Campers.Add(camper);
             contextfile.SaveChanges();
             Console.WriteLine("Camper successfully added to database!");
+            Console.ReadKey();
+            Console.Clear();
             }
 
             catch (Exception ex) { Console.WriteLine($"Error: {ex.Message}"); }
@@ -117,6 +119,8 @@ namespace CampSleepway_TeamGaJoL
             contextfile.Councelors.Add(counselor);
             contextfile.SaveChanges();
             Console.WriteLine("Councelor successfully added to database!");
+            Console.ReadKey();
+            Console.Clear();
         }
 
         private void AddNextOfKin(string firstName, string lastName, string phoneNumber, string sex, int age)
@@ -159,6 +163,8 @@ namespace CampSleepway_TeamGaJoL
             contextfile.NextOfKins.Add(nextOfKin);
             contextfile.SaveChanges();
             Console.WriteLine("NextOfKin added successfully!");
+            Console.ReadKey();
+            Console.Clear();
             }
             catch(Exception ex) { Console.WriteLine($"Error: {ex.Message}"); }
         }

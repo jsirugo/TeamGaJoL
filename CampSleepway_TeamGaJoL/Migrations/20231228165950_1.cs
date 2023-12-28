@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CampSleepway_TeamGaJoL.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class _1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -53,7 +53,7 @@ namespace CampSleepway_TeamGaJoL.Migrations
                 {
                     CabinId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CouncelorId = table.Column<int>(type: "int", nullable: false)
+                    CouncelorId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -62,8 +62,7 @@ namespace CampSleepway_TeamGaJoL.Migrations
                         name: "FK_Cabins_Councelors_CouncelorId",
                         column: x => x.CouncelorId,
                         principalTable: "Councelors",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(

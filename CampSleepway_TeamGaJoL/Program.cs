@@ -11,16 +11,14 @@ class Program
         int option = MainMenu.ShowMenu("Welcome to Camp Sleepaway! What do you want to do?", new[]
         {
             "Add person to database", // Potentiellt lägga in så man kan ange csv fil att läsas in utöver att mata in manuellt
+            "Add cabin",
             "Assign a camper to a cabin",
             "Remove a camper from the camp",
             "Search for campers in Camp Sleepaway",
             "Show a list of all campers sorted on cabins",
-            "Exit", // int 5
+            "Exit" 
            
-        }
-        
-
-        );
+        });
 
         if (option == 0)
         {
@@ -28,41 +26,55 @@ class Program
 
             AddPerson addPerson = new AddPerson(dbContext);
 
-          
             addPerson.AddPersonToDatabase();
         }
-            if(option == 1)
+
+        if (option == 1)
+        {
+            CampSleepawayContext dbContext = new CampSleepawayContext();
+            AddCabin addCabin = new AddCabin(dbContext);
+
+            addCabin.AddCabinToDatabase();
+        }
+
+        if (option == 2)
+        {
+            CampSleepawayContext dbContext = new CampSleepawayContext();
+            CabinManager assignperson = new CabinManager(dbContext);
+            Console.WriteLine("Who do you want to assign to a cabin?");
+            var persons = dbContext.Persons.ToList();
+            
+            foreach (var person in persons)
             {
-                CampSleepawayContext dbContext = new CampSleepawayContext();
-                CabinManager assignperson = new CabinManager(dbContext);
-                Console.WriteLine("Who do you want to assign to a cabin?");
-                var persons = dbContext.Persons.ToList();
-                foreach (var person in persons)
-                {
-                    if (person is Councelor councelor) { Console.WriteLine($"{person.Id}. {person.FirstName} {person.LastName}" + " (Councelor)"); } // visar att person är councelor om så är fallet
+                if (person is Councelor councelor) { Console.WriteLine($"{person.Id}. {person.FirstName} {person.LastName}" + " (Councelor)"); } // visar att person är councelor om så är fallet
 
-                    else
-                    {
-                        Console.WriteLine($"{person.Id}. {person.FirstName} {person.LastName}");
-                    }
-                }
-                int personId = int.Parse(Console.ReadLine());
-                var selectedPerson = persons.FirstOrDefault(p => p.Id == personId);
-
-                if (selectedPerson != null)
-                {
-                    var cabinAssignmentManager = new CabinManager(dbContext);
-                    cabinAssignmentManager.AssignToCabin(selectedPerson);
-                    Console.WriteLine($"Successfully assigned {selectedPerson.FirstName} {selectedPerson.LastName} to a cabin.");
-                }
                 else
                 {
-                    Console.WriteLine("Invalid person Id. Assignment failed.");
+                    Console.WriteLine($"{person.Id}. {person.FirstName} {person.LastName}");
                 }
-
             }
+            
+            int personId = int.Parse(Console.ReadLine());
+            var selectedPerson = persons.FirstOrDefault(p => p.Id == personId);
 
-            if(option == 5) { running = false; }
+            if (selectedPerson != null)
+            {
+                var cabinAssignmentManager = new CabinManager(dbContext);
+                cabinAssignmentManager.AssignToCabin(selectedPerson);
+                Console.WriteLine($"Successfully assigned {selectedPerson.FirstName} {selectedPerson.LastName} to a cabin.");
+            }
+            else
+            {
+                Console.WriteLine("Invalid person Id. Assignment failed.");
+            }
+            Console.ReadKey();
+            Console.Clear();
+        }
+          
+        if (option == 6) 
+        { 
+            running = false; 
+        }
 
 
         }

@@ -33,6 +33,13 @@ namespace CampSleepway_TeamGaJoL.Migrations
                     b.Property<int?>("CouncelorId")
                         .HasColumnType("int");
 
+                    b.Property<int>("MaxCapacity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("CabinId");
 
                     b.HasIndex("CouncelorId");

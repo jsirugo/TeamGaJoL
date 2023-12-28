@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CampSleepway_TeamGaJoL.Migrations
 {
     [DbContext(typeof(CampSleepawayContext))]
-    [Migration("20231220143531_initial")]
-    partial class initial
+    [Migration("20231228180905_2")]
+    partial class _2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,8 +33,15 @@ namespace CampSleepway_TeamGaJoL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CabinId"));
 
-                    b.Property<int>("CouncelorId")
+                    b.Property<int?>("CouncelorId")
                         .HasColumnType("int");
+
+                    b.Property<int>("MaxCapacity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CabinId");
 
@@ -129,9 +136,7 @@ namespace CampSleepway_TeamGaJoL.Migrations
                 {
                     b.HasOne("CampSleepway_TeamGaJoL.Councelor", "Councelor")
                         .WithMany()
-                        .HasForeignKey("CouncelorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CouncelorId");
 
                     b.Navigation("Councelor");
                 });
