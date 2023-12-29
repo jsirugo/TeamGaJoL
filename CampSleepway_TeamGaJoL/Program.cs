@@ -22,7 +22,8 @@ class Program
 
         if (option == 0)
         {
-            CampSleepawayContext dbContext = new CampSleepawayContext(); 
+                Console.Clear();
+                CampSleepawayContext dbContext = new CampSleepawayContext(); 
 
             AddPerson addPerson = new AddPerson(dbContext);
 
@@ -31,7 +32,8 @@ class Program
 
         if (option == 1)
         {
-            CampSleepawayContext dbContext = new CampSleepawayContext();
+                Console.Clear();
+                CampSleepawayContext dbContext = new CampSleepawayContext();
             AddCabin addCabin = new AddCabin(dbContext);
 
             addCabin.AddCabinToDatabase();
@@ -39,37 +41,25 @@ class Program
 
         if (option == 2)
         {
-            CampSleepawayContext dbContext = new CampSleepawayContext();
+                Console.Clear();
+                CampSleepawayContext dbContext = new CampSleepawayContext();
             CabinManager assignperson = new CabinManager(dbContext);
-            Console.WriteLine("Who do you want to assign to a cabin?");
-            var persons = dbContext.Persons.ToList();
-            
-            foreach (var person in persons)
-            {
-                if (person is Councelor councelor) { Console.WriteLine($"{person.Id}. {person.FirstName} {person.LastName}" + " (Councelor)"); } // visar att person är councelor om så är fallet
-
-                else
-                {
-                    Console.WriteLine($"{person.Id}. {person.FirstName} {person.LastName}");
-                }
-            }
-            
-            int personId = int.Parse(Console.ReadLine());
-            var selectedPerson = persons.FirstOrDefault(p => p.Id == personId);
-
-            if (selectedPerson != null)
-            {
-                var cabinAssignmentManager = new CabinManager(dbContext);
-                cabinAssignmentManager.AssignToCabin(selectedPerson);
-                Console.WriteLine($"Successfully assigned {selectedPerson.FirstName} {selectedPerson.LastName} to a cabin.");
-            }
-            else
-            {
-                Console.WriteLine("Invalid person Id. Assignment failed.");
-            }
+                var cabinManager = new CabinManager(dbContext);
+                cabinManager.DisplayCabinOccupants();
+                assignperson.PersonSelecter();
+                
+             
+         
             Console.ReadKey();
             Console.Clear();
         }
+        if(option == 5)
+            {
+                Console.Clear();
+                CampSleepawayContext dbContext = new CampSleepawayContext();
+                CabinManager cabinsorter = new CabinManager(dbContext);
+                cabinsorter.DisplayCabinOccupants();
+            }
           
         if (option == 6) 
         { 

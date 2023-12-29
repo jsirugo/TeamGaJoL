@@ -14,5 +14,10 @@ namespace CampSleepway_TeamGaJoL
         public int MaxCapacity { get; set; }
         public List<Camper> Campers { get; set; }
         public Councelor? Councelor { get; set; }
+
+        public Cabin()
+        {
+            Campers = new List<Camper>();
+        }
     }
 }
