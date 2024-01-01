@@ -13,6 +13,28 @@ namespace CampSleepway_TeamGaJoL
         public virtual Camper? Camper { get; set; } // måste vara ansluten till en camper
         public int? CouncelorId { get; set; } // FÅR vara ansluten till en councelor, måste ej
         public virtual Councelor? Councelor { get; set; }// FÅR vara ansluten till en coucelor, måste ej
+        
 
+        // Potentiell framtida lösning på ifall vi vill visa namn i databasen på andra
+        // ställen än på bara persons
+        //[Column("First Name")]
+        //public string Firstname
+        //{
+        //    get
+        //    {
+        //        var associatedPerson = GetAssociatedPerson.AssociatedPerson(Id);
+        //        return associatedPerson.FirstName;
+        //    }
+        //}
+
+        //[Column("Last Name")]
+        //public string Lastname
+        //{
+        //    get
+        //    {
+        //        var associatedPerson = GetAssociatedPerson.AssociatedPerson(Id);
+        //        return associatedPerson.LastName;
+        //    }
+        //}
     }
 }

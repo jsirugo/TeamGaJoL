@@ -16,7 +16,7 @@ class Program
             "Remove a camper from the camp",
             "Search for campers in Camp Sleepaway",
             "Show a list of all campers sorted on cabins",
-            "If database is empty, add people from a list",
+            "Add people from external list",
             "Exit" 
            
         });
