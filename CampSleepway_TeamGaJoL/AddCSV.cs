@@ -12,22 +12,25 @@ namespace CampSleepway_TeamGaJoL
         {
             using var context = new CampSleepawayContext();
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), "People.csv");
-            var persons = ReadCSV(filePath);
-            Console.WriteLine($"{persons.Count} records found in the CSV file");
+            var personsFromCsv = ReadCSV(filePath);
+            Console.WriteLine($"{personsFromCsv.Count} records found in the CSV file");
 
-            // Körs enbart ifall databasen är tom
-            if (!context.Persons.Any())
+            // Tar fram existeranade inlägg
+            var existingPersons = context.Persons.ToList();
+
+            // Jämför existerande inlägg med potentiellt nya inlägg
+            var newPersons = personsFromCsv.Where(p => !existingPersons.Any(ep => ep.FirstName == p.FirstName && ep.LastName == p.LastName)).ToList();
+
+            // Lägger till ifall det finns nya inlägg
+            if (newPersons.Any())
             {
-                foreach (var person in persons)
-                {
-                    context.Persons.Add(person);
-                }
+                context.Persons.AddRange(newPersons);
                 context.SaveChanges();
-                Console.WriteLine("Persons added to the database");
+                Console.WriteLine($"{newPersons.Count} new persons added to the database");
             }
             else
             {
-                Console.WriteLine("Persons are already added to the database");
+                Console.WriteLine("No new persons found in the CSV file");
             }
         }
 
