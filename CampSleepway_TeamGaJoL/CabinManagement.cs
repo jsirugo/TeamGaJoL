@@ -18,14 +18,19 @@ namespace CampSleepway_TeamGaJoL
 
         public void DisplayCabinOccupants()
         {
-            var cabins = context.Cabins.Include(c => c.Campers).ToList();
+            var cabins = context.Cabins.Include(c => c.Campers).Include(c => c.Councelor).ToList();
 
             Console.WriteLine("\nCabin Occupants:");
             foreach (var cabin in cabins)
             {
                 Console.WriteLine($"Cabin ID: {cabin.CabinId}, Name: {cabin.Name}");
 
-                if (cabin.Campers.Any()) // any= booleanskt uttryck som kollar om det finns något i den. om ja, true, om nej, falskt
+                if (cabin.Councelor != null)
+                {
+                    Console.WriteLine($"Counselor: {cabin.Councelor.FirstName} {cabin.Councelor.LastName}");
+                }
+
+                if (cabin.Campers.Any())
                 {
                     Console.WriteLine("Occupants:");
                     foreach (var camper in cabin.Campers)
@@ -66,85 +71,120 @@ namespace CampSleepway_TeamGaJoL
             {
                 var cabinAssignmentManager = new CabinManager(context);
                 AssignToCabin(selectedPerson);
-                Console.WriteLine($"Successfully assigned {selectedPerson.FirstName} {selectedPerson.LastName} to a cabin.");
+                
             }
             else
             {
                 Console.WriteLine("Invalid person Id. Assignment failed.");
             }
         }
+
         public void AssignToCabin(Person person)
         {
-
-
-           
             if (person is Camper camper)
             {
-                AssignCamperToCabin(camper);
-            }
-            else if (person is Councelor councelor)
-            {
-                AssignCouncelorToCabin(councelor);
-            }
-           
-        }
+                Console.WriteLine("Available Cabins:");
+                DisplayAvailableCabins();
+                Console.Write("Enter the Cabin ID where the Camper should be assigned: ");
 
-
-
-        private void AssignCamperToCabin(Camper camper)
-        {
-            try
-            {
-
-                var cabinWithCouncelor = context.Cabins
-            .Include(c => c.Campers) 
-            .FirstOrDefault(c => c.Campers.Count < 4);
-
-                if (cabinWithCouncelor != null)
+                if (int.TryParse(Console.ReadLine(), out int cabinId))
                 {
-                
-                    cabinWithCouncelor.Campers.Add(camper);
-
-                    context.SaveChanges();
-                    Console.WriteLine($"Camper {camper.FirstName} {camper.LastName} assigned to Cabin {cabinWithCouncelor.CabinId}.");
+                    AssignCamperToCabin(camper, cabinId);
                 }
                 else
                 {
-                    Console.WriteLine("No cabin available for camper assignment. A cabin with a councelor is needed.");
+                    Console.WriteLine("Invalid input. Assignment failed.");
                 }
             }
-            catch (Exception ex) { Console.WriteLine($"Error: {ex.Message}"); }
-        }
-
-        private void AssignCouncelorToCabin(Councelor councelor)
-        {
-            try
+            else if (person is Councelor counselor)
             {
+                Console.WriteLine("Available Cabins:");
+                DisplayAvailableCabins();
+                Console.Write("Enter the Cabin ID where the Counselor should be assigned: ");
 
-                var assignedCabin = context.Cabins.FirstOrDefault(c => c.Councelor != null && c.Councelor.Id == councelor.Id); // ser så inte samma councelor blir assignad två gånger till samma cabin
-
-                if (assignedCabin != null)
+                if (int.TryParse(Console.ReadLine(), out int cabinId))
                 {
-                    Console.WriteLine($"Councelor {councelor.FirstName} {councelor.LastName} is already assigned to Cabin {assignedCabin.CabinId}.");
+                    AssignCounselorToCabin(counselor, cabinId);
                 }
                 else
                 {
+                    Console.WriteLine("Invalid input. Assignment failed.");
+                }
+            }
+        }
 
-                    var cabinWithoutCouncelor = context.Cabins.FirstOrDefault(c => c.Councelor == null || c.Councelor.Id != councelor.Id);
+        private void AssignCamperToCabin(Camper camper, int cabinId)
+        {
+            try
+            {
+                var cabin = context.Cabins.Include(c => c.Campers).FirstOrDefault(c => c.CabinId == cabinId);
 
-                    if (cabinWithoutCouncelor != null)
+                if (cabin != null && cabin.Campers.Count < 4)
+                {
+                    var counselorInCabin = context.Cabins
+                        .Include(c => c.Councelor)
+                        .FirstOrDefault(c => c.CabinId == cabinId)?.Councelor;
+
+                    if (counselorInCabin != null)
                     {
-                        cabinWithoutCouncelor.Councelor = councelor;
+                        cabin.Campers.Add(camper);
                         context.SaveChanges();
-                        Console.WriteLine($"Councelor {councelor.FirstName} {councelor.LastName} assigned to Cabin {cabinWithoutCouncelor.CabinId}.");
+                        Console.WriteLine($"Camper {camper.FirstName} {camper.LastName} assigned to Cabin {cabin.CabinId}.");
                     }
                     else
                     {
-                        Console.WriteLine("All cabins are already assigned a councelor. Cannot assign councelor to a new cabin.");
+                        Console.WriteLine("A counselor is required in the cabin before assigning a camper.");
                     }
                 }
+                else
+                {
+                    Console.WriteLine("Invalid cabin selection or no availability for camper assignment.");
+                }
             }
-            catch (Exception ex) { Console.WriteLine($"Error: {ex.Message}"); }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
+
+        private void AssignCounselorToCabin(Councelor counselor, int cabinId)
+        {
+            try
+            {
+                var cabin = context.Cabins.Include(c => c.Councelor).FirstOrDefault(c => c.CabinId == cabinId);
+
+                if (cabin != null)
+                {
+                    if (cabin.Councelor == null)
+                    {
+                        cabin.Councelor = counselor;
+                        context.SaveChanges();
+                        Console.WriteLine($"Counselor {counselor.FirstName} {counselor.LastName} assigned to Cabin {cabin.CabinId}.");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Cabin {cabin.CabinId} already has a counselor assigned.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid cabin selection.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
+
+        private void DisplayAvailableCabins()
+        {
+            var availableCabins = context.Cabins.Where(c => c.Councelor == null || c.Campers.Count < 4).ToList();
+
+            foreach (var cabin in availableCabins)
+            {
+                Console.WriteLine($"Cabin ID: {cabin.CabinId}, Name: {cabin.Name}");
+            }
         }
     }
 }
