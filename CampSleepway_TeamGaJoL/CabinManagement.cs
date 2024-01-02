@@ -119,7 +119,7 @@ namespace CampSleepway_TeamGaJoL
             {
                 var cabin = context.Cabins.Include(c => c.Campers).FirstOrDefault(c => c.CabinId == cabinId);
 
-                if (cabin != null && cabin.Campers.Count < 4)
+                if (cabin != null && cabin.Campers.Count < cabin.MaxCapacity)
                 {
                     var counselorInCabin = context.Cabins
                         .Include(c => c.Councelor)
@@ -202,7 +202,7 @@ namespace CampSleepway_TeamGaJoL
 
         private void DisplayAvailableCabins()
         {
-            var availableCabins = context.Cabins.Where(c => c.Councelor == null || c.Campers.Count < 4).ToList();
+            var availableCabins = context.Cabins.Where(c => c.Councelor == null || c.Campers.Count < c.MaxCapacity).ToList();
 
             foreach (var cabin in availableCabins)
             {
