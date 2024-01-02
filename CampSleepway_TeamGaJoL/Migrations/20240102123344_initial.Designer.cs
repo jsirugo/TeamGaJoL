@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CampSleepway_TeamGaJoL.Migrations
 {
     [DbContext(typeof(CampSleepawayContext))]
-    [Migration("20240102114359_1")]
-    partial class _1
+    [Migration("20240102123344_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

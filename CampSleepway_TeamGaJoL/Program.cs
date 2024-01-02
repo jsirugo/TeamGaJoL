@@ -61,8 +61,19 @@ class Program
                 CampSleepawayContext dbContext = new CampSleepawayContext();
                 SearchCamper searchCabin = new SearchCamper(dbContext);
                 SearchCamper searchCounselor = new SearchCamper(dbContext);
+                int option2 = MainMenu.ShowMenu("Select from what source you want to search for campers", new[]
+                {
+                    "Search based on cabin",
+                    "Search based on counselor"
+                });
+                if (option2 == 0)
+                {
                 searchCabin.DisplayCabins();
+                }
+                if (option2 == 1)
+                {
                 searchCounselor.DisplayCounselors();
+                }
             }
         if(option == 5)
             {
