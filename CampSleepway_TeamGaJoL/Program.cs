@@ -55,6 +55,15 @@ class Program
             Console.ReadKey();
             Console.Clear();
         }
+        if(option == 4) 
+            {
+                Console.Clear();
+                CampSleepawayContext dbContext = new CampSleepawayContext();
+                SearchCamper searchCabin = new SearchCamper(dbContext);
+                SearchCamper searchCounselor = new SearchCamper(dbContext);
+                searchCabin.DisplayCabins();
+                searchCounselor.DisplayCounselors();
+            }
         if(option == 5)
             {
                 Console.Clear();
