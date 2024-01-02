@@ -143,7 +143,7 @@ namespace CampSleepway_TeamGaJoL
 
 
             var selectedCamper = campers.FirstOrDefault(c => c.Id == camperId);
-            if (selectedCamper == null || camperId > campers.Count || camperId < campers.Count) // om strul ta bort dessa två senaste villkoren ) x<x||x >x
+            if (selectedCamper == null ||camperId > campers.Max(c => c.Id) || camperId < 0) 
             {
                 Console.WriteLine("Invalid Camper Id. NextOfKin needs to be connected to a camper. Returning.");
                 return;
@@ -159,7 +159,8 @@ namespace CampSleepway_TeamGaJoL
                 Age = age,
                 CamperId = camperId
             };
-
+             
+                
             contextfile.NextOfKins.Add(nextOfKin);
             contextfile.SaveChanges();
             Console.WriteLine("NextOfKin added successfully!");

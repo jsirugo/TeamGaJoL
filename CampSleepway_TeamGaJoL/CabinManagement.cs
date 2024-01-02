@@ -19,7 +19,7 @@ namespace CampSleepway_TeamGaJoL
         public void DisplayCabinOccupants()
         {
             var cabins = context.Cabins.Include(c => c.Campers).Include(c => c.Counselor).ToList();
-
+            var nextOfKins = context.NextOfKins.Include(c => c.Camper).ToList();
             Console.WriteLine("\nCabins:");
             foreach (var cabin in cabins)
             {
@@ -32,24 +32,34 @@ namespace CampSleepway_TeamGaJoL
 
                 if (cabin.Campers.Any())
                 {
+
                     Console.WriteLine("Occupants:");
                     foreach (var camper in cabin.Campers)
                     {
+
+                        var nextOfKin = nextOfKins.FirstOrDefault(n => n.CamperId == camper.Id);
+
                         Console.WriteLine($" - CamperId: {camper.Id}. {camper.FirstName} {camper.LastName}");
+
+                        if (nextOfKin != null)
+                        {
+                            Console.WriteLine($"   NextOfKin associated to {camper.FirstName}: {nextOfKin.FirstName} {nextOfKin.LastName}");
+                        }
+
                     }
+                   
                 }
                 else
                 {
                     Console.WriteLine("No occupants!");
                 }
 
-                
             }
+            
         }
 
         public void PersonSelecter()
         {
-
 
             Console.WriteLine("\n Who do you want to assign to a cabin?");
             var persons = context.Persons.ToList();
@@ -155,7 +165,7 @@ namespace CampSleepway_TeamGaJoL
 
                 if (cabin != null)
                 {
-                    // Kontrollerar om counselor redan ansvarar för en annan stuga
+                    // Kontrollerar så att counselor får plats att dirigera stugan
                     var existingCounselorForCabin = context.Cabins.FirstOrDefault(c => c.Counselor != null && c.Counselor.Id == counselor.Id);
 
                     if (existingCounselorForCabin == null)
