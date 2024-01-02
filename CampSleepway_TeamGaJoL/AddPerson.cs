@@ -39,7 +39,7 @@ namespace CampSleepway_TeamGaJoL
             int age = int.Parse(Console.ReadLine());
 
             Console.Write("Enter a number to be assigned to the different person types: (Camper, Counselor, NextOfKin): ");
-                Console.WriteLine("\nPress  '1' to be assigned to 'Camper' \nPress '2' to be assigned to 'Councelor'\nPress '3' to be assigned to NextOfKin"   );
+                Console.WriteLine("\nPress  '1' to be assigned to 'Camper' \nPress '2' to be assigned to 'Counselor'\nPress '3' to be assigned to NextOfKin"   );
             int personType = int.Parse(Console.ReadLine());
 
                 if (personType == 1)
@@ -105,7 +105,7 @@ namespace CampSleepway_TeamGaJoL
             DateTime? endDate = DateTime.TryParse(Console.ReadLine(), out var result) ? result : (DateTime?)null;
 
             
-            var counselor = new Councelor
+            var counselor = new Counselor
             {
                 FirstName = firstName,
                 LastName = lastName,
@@ -116,9 +116,9 @@ namespace CampSleepway_TeamGaJoL
                 EndDate = endDate
             };
 
-            contextfile.Councelors.Add(counselor);
+            contextfile.Counselors.Add(counselor);
             contextfile.SaveChanges();
-            Console.WriteLine("Councelor successfully added to database!");
+            Console.WriteLine("Counselor successfully added to database!");
             Console.ReadKey();
             Console.Clear();
         }

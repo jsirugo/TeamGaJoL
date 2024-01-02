@@ -13,7 +13,7 @@ namespace CampSleepway_TeamGaJoL
         public string Name { get; set; }
         public int MaxCapacity { get; set; }
         public List<Camper> Campers { get; set; }
-        public Councelor? Councelor { get; set; }
+        public Counselor? Counselor { get; set; }
 
         public Cabin()
         {

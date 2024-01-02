@@ -80,7 +80,7 @@ namespace CampSleepway_TeamGaJoL
                     }
                     else if (isCounselor)
                     {
-                        var counselor = new Councelor
+                        var counselor = new Counselor
                         {
                             FirstName = firstName,
                             LastName = lastName,

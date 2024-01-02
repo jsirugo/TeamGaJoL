@@ -29,7 +29,7 @@ namespace CampSleepway_TeamGaJoL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Councelors",
+                name: "Counselors",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
@@ -38,9 +38,9 @@ namespace CampSleepway_TeamGaJoL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Councelors", x => x.Id);
+                    table.PrimaryKey("PK_Counselors", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Councelors_Persons_Id",
+                        name: "FK_Counselors_Persons_Id",
                         column: x => x.Id,
                         principalTable: "Persons",
                         principalColumn: "Id",
@@ -53,15 +53,17 @@ namespace CampSleepway_TeamGaJoL.Migrations
                 {
                     CabinId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CouncelorId = table.Column<int>(type: "int", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MaxCapacity = table.Column<int>(type: "int", nullable: false),
+                    CounselorId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cabins", x => x.CabinId);
                     table.ForeignKey(
-                        name: "FK_Cabins_Councelors_CouncelorId",
-                        column: x => x.CouncelorId,
-                        principalTable: "Councelors",
+                        name: "FK_Cabins_Counselors_CounselorId",
+                        column: x => x.CounselorId,
+                        principalTable: "Counselors",
                         principalColumn: "Id");
                 });
 
@@ -96,7 +98,7 @@ namespace CampSleepway_TeamGaJoL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
                     CamperId = table.Column<int>(type: "int", nullable: true),
-                    CouncelorId = table.Column<int>(type: "int", nullable: true)
+                    CounselorId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -107,9 +109,9 @@ namespace CampSleepway_TeamGaJoL.Migrations
                         principalTable: "Campers",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_NextOfKins_Councelors_CouncelorId",
-                        column: x => x.CouncelorId,
-                        principalTable: "Councelors",
+                        name: "FK_NextOfKins_Counselors_CounselorId",
+                        column: x => x.CounselorId,
+                        principalTable: "Counselors",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_NextOfKins_Persons_Id",
@@ -120,9 +122,9 @@ namespace CampSleepway_TeamGaJoL.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cabins_CouncelorId",
+                name: "IX_Cabins_CounselorId",
                 table: "Cabins",
-                column: "CouncelorId");
+                column: "CounselorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Campers_CabinId",
@@ -135,9 +137,9 @@ namespace CampSleepway_TeamGaJoL.Migrations
                 column: "CamperId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_NextOfKins_CouncelorId",
+                name: "IX_NextOfKins_CounselorId",
                 table: "NextOfKins",
-                column: "CouncelorId");
+                column: "CounselorId");
         }
 
         /// <inheritdoc />
@@ -153,7 +155,7 @@ namespace CampSleepway_TeamGaJoL.Migrations
                 name: "Cabins");
 
             migrationBuilder.DropTable(
-                name: "Councelors");
+                name: "Counselors");
 
             migrationBuilder.DropTable(
                 name: "Persons");

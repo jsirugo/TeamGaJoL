@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CampSleepway_TeamGaJoL.Migrations
 {
     [DbContext(typeof(CampSleepawayContext))]
-    [Migration("20231228180905_2")]
-    partial class _2
+    [Migration("20240102114359_1")]
+    partial class _1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,7 +33,7 @@ namespace CampSleepway_TeamGaJoL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CabinId"));
 
-                    b.Property<int?>("CouncelorId")
+                    b.Property<int?>("CounselorId")
                         .HasColumnType("int");
 
                     b.Property<int>("MaxCapacity")
@@ -45,7 +45,7 @@ namespace CampSleepway_TeamGaJoL.Migrations
 
                     b.HasKey("CabinId");
 
-                    b.HasIndex("CouncelorId");
+                    b.HasIndex("CounselorId");
 
                     b.ToTable("Cabins");
                 });
@@ -102,7 +102,7 @@ namespace CampSleepway_TeamGaJoL.Migrations
                     b.ToTable("Campers", (string)null);
                 });
 
-            modelBuilder.Entity("CampSleepway_TeamGaJoL.Councelor", b =>
+            modelBuilder.Entity("CampSleepway_TeamGaJoL.Counselor", b =>
                 {
                     b.HasBaseType("CampSleepway_TeamGaJoL.Person");
 
@@ -112,7 +112,7 @@ namespace CampSleepway_TeamGaJoL.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
-                    b.ToTable("Councelors", (string)null);
+                    b.ToTable("Counselors", (string)null);
                 });
 
             modelBuilder.Entity("CampSleepway_TeamGaJoL.NextOfKin", b =>
@@ -122,23 +122,23 @@ namespace CampSleepway_TeamGaJoL.Migrations
                     b.Property<int?>("CamperId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CouncelorId")
+                    b.Property<int?>("CounselorId")
                         .HasColumnType("int");
 
                     b.HasIndex("CamperId");
 
-                    b.HasIndex("CouncelorId");
+                    b.HasIndex("CounselorId");
 
                     b.ToTable("NextOfKins", (string)null);
                 });
 
             modelBuilder.Entity("CampSleepway_TeamGaJoL.Cabin", b =>
                 {
-                    b.HasOne("CampSleepway_TeamGaJoL.Councelor", "Councelor")
+                    b.HasOne("CampSleepway_TeamGaJoL.Counselor", "Counselor")
                         .WithMany()
-                        .HasForeignKey("CouncelorId");
+                        .HasForeignKey("CounselorId");
 
-                    b.Navigation("Councelor");
+                    b.Navigation("Counselor");
                 });
 
             modelBuilder.Entity("CampSleepway_TeamGaJoL.Camper", b =>
@@ -154,11 +154,11 @@ namespace CampSleepway_TeamGaJoL.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("CampSleepway_TeamGaJoL.Councelor", b =>
+            modelBuilder.Entity("CampSleepway_TeamGaJoL.Counselor", b =>
                 {
                     b.HasOne("CampSleepway_TeamGaJoL.Person", null)
                         .WithOne()
-                        .HasForeignKey("CampSleepway_TeamGaJoL.Councelor", "Id")
+                        .HasForeignKey("CampSleepway_TeamGaJoL.Counselor", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -169,9 +169,9 @@ namespace CampSleepway_TeamGaJoL.Migrations
                         .WithMany("NextofKins")
                         .HasForeignKey("CamperId");
 
-                    b.HasOne("CampSleepway_TeamGaJoL.Councelor", "Councelor")
+                    b.HasOne("CampSleepway_TeamGaJoL.Counselor", "Counselor")
                         .WithMany("NextOfKins")
-                        .HasForeignKey("CouncelorId");
+                        .HasForeignKey("CounselorId");
 
                     b.HasOne("CampSleepway_TeamGaJoL.Person", null)
                         .WithOne()
@@ -181,7 +181,7 @@ namespace CampSleepway_TeamGaJoL.Migrations
 
                     b.Navigation("Camper");
 
-                    b.Navigation("Councelor");
+                    b.Navigation("Counselor");
                 });
 
             modelBuilder.Entity("CampSleepway_TeamGaJoL.Cabin", b =>
@@ -194,7 +194,7 @@ namespace CampSleepway_TeamGaJoL.Migrations
                     b.Navigation("NextofKins");
                 });
 
-            modelBuilder.Entity("CampSleepway_TeamGaJoL.Councelor", b =>
+            modelBuilder.Entity("CampSleepway_TeamGaJoL.Counselor", b =>
                 {
                     b.Navigation("NextOfKins");
                 });

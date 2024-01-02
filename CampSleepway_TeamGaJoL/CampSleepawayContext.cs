@@ -7,7 +7,7 @@ namespace CampSleepway_TeamGaJoL
     public class CampSleepawayContext : DbContext
     {
         public DbSet<Person> Persons { get; set; }
-        public DbSet<Councelor> Councelors { get; set; }
+        public DbSet<Counselor> Counselors { get; set; }
         public DbSet<NextOfKin> NextOfKins { get; set; }
         public DbSet<Camper> Campers { get; set; }
         public DbSet<Cabin> Cabins { get; set; }
@@ -16,7 +16,7 @@ namespace CampSleepway_TeamGaJoL
         {
             modelBuilder.Entity<Person>().ToTable("Persons");
             modelBuilder.Entity<Camper>().ToTable("Campers");
-            modelBuilder.Entity<Councelor>().ToTable("Councelors");
+            modelBuilder.Entity<Counselor>().ToTable("Counselors");
             modelBuilder.Entity<NextOfKin>().ToTable("NextOfKins");
 
            
