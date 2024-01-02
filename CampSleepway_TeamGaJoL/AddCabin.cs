@@ -17,7 +17,7 @@ namespace CampSleepway_TeamGaJoL
 
         public void AddCabinToDatabase()
         {
-            Console.Clear();
+            
             try
             {
                 var newCabin = new Cabin();

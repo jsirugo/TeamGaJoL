@@ -46,6 +46,7 @@ class Program
                 CampSleepawayContext dbContext = new CampSleepawayContext();
             CabinManager assignperson = new CabinManager(dbContext);
                 var cabinManager = new CabinManager(dbContext);
+                
                 cabinManager.DisplayCabinOccupants();
                 assignperson.PersonSelecter();
                 
@@ -60,6 +61,8 @@ class Program
                 CampSleepawayContext dbContext = new CampSleepawayContext();
                 CabinManager cabinsorter = new CabinManager(dbContext);
                 cabinsorter.DisplayCabinOccupants();
+                Console.ReadKey();
+                Console.Clear();
             }
           
         if (option == 6) 

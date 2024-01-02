@@ -20,14 +20,14 @@ namespace CampSleepway_TeamGaJoL
         {
             var cabins = context.Cabins.Include(c => c.Campers).Include(c => c.Councelor).ToList();
 
-            Console.WriteLine("\nCabin Occupants:");
+            Console.WriteLine("\nCabins:");
             foreach (var cabin in cabins)
             {
                 Console.WriteLine($"Cabin ID: {cabin.CabinId}, Name: {cabin.Name}");
 
                 if (cabin.Councelor != null)
                 {
-                    Console.WriteLine($"Counselor: {cabin.Councelor.FirstName} {cabin.Councelor.LastName}");
+                    Console.WriteLine($"Councelor: {cabin.Councelor.FirstName} {cabin.Councelor.LastName}");
                 }
 
                 if (cabin.Campers.Any())
@@ -43,7 +43,7 @@ namespace CampSleepway_TeamGaJoL
                     Console.WriteLine("No occupants!");
                 }
 
-                Console.WriteLine();
+                
             }
         }
 
@@ -60,7 +60,7 @@ namespace CampSleepway_TeamGaJoL
 
                 else
                 {
-                    Console.WriteLine($"{person.Id}. {person.FirstName} {person.LastName}");
+                    Console.WriteLine($"{person.Id}. {person.FirstName} {person.LastName} ");
                 }
             }
 
@@ -100,7 +100,7 @@ namespace CampSleepway_TeamGaJoL
             {
                 Console.WriteLine("Available Cabins:");
                 DisplayAvailableCabins();
-                Console.Write("Enter the Cabin ID where the Counselor should be assigned: ");
+                Console.Write("Enter the Cabin ID where the Councelor should be assigned: ");
 
                 if (int.TryParse(Console.ReadLine(), out int cabinId))
                 {
@@ -133,7 +133,7 @@ namespace CampSleepway_TeamGaJoL
                     }
                     else
                     {
-                        Console.WriteLine("A counselor is required in the cabin before assigning a camper.");
+                        Console.WriteLine("A councelor is required in the cabin before assigning a camper.");
                     }
                 }
                 else
@@ -155,15 +155,38 @@ namespace CampSleepway_TeamGaJoL
 
                 if (cabin != null)
                 {
-                    if (cabin.Councelor == null)
+                    // Kontrollerar om counselor redan ansvarar för en annan stuga
+                    var existingCounselorForCabin = context.Cabins.FirstOrDefault(c => c.Councelor != null && c.Councelor.Id == counselor.Id);
+
+                    if (existingCounselorForCabin == null)
                     {
-                        cabin.Councelor = counselor;
-                        context.SaveChanges();
-                        Console.WriteLine($"Counselor {counselor.FirstName} {counselor.LastName} assigned to Cabin {cabin.CabinId}.");
+                        if (cabin.Councelor != null)
+                        {
+                            Console.WriteLine($"Cabin {cabin.CabinId} already has a counselor assigned:");
+                            Console.WriteLine($"Existing Counselor: {cabin.Councelor.FirstName} {cabin.Councelor.LastName}");
+                            Console.Write("Do you want to replace the existing counselor with the new one? (Yes/No): ");
+
+                            if (Console.ReadLine() == "Yes")
+                            {
+                                cabin.Councelor = counselor;
+                                context.SaveChanges();
+                                Console.WriteLine($"Counselor {counselor.FirstName} {counselor.LastName} replaced the existing counselor in Cabin {cabin.CabinId}.");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Assignment cancelled. Existing Counselor {cabin.Councelor.FirstName} {cabin.Councelor.LastName} remain in Cabin {cabin.CabinId}.");
+                            }
+                        }
+                        else
+                        {
+                            cabin.Councelor = counselor;
+                            context.SaveChanges();
+                            Console.WriteLine($"Counselor {counselor.FirstName} {counselor.LastName} assigned to Cabin {cabin.CabinId}.");
+                        }
                     }
                     else
                     {
-                        Console.WriteLine($"Cabin {cabin.CabinId} already has a counselor assigned.");
+                        Console.WriteLine($"Counselor {counselor.FirstName} {counselor.LastName} already assigned to another cabin.");
                     }
                 }
                 else
