@@ -18,9 +18,8 @@ namespace CampSleepway_TeamGaJoL
             modelBuilder.Entity<Camper>().ToTable("Campers");
             modelBuilder.Entity<Counselor>().ToTable("Counselors");
             modelBuilder.Entity<NextOfKin>().ToTable("NextOfKins");
-
-           
         }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var configuration = new ConfigurationBuilder()

@@ -99,7 +99,7 @@ namespace CampSleepway_TeamGaJoL
             }
             else
             {
-                Console.WriteLine("Invalid counselord ID");
+                Console.WriteLine("Invalid counselor ID");
             }
         }
     }

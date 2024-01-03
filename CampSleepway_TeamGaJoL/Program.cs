@@ -55,7 +55,17 @@ class Program
             Console.ReadKey();
             Console.Clear();
         }
-        if(option == 4) 
+
+        if (option == 3)
+            {
+                Console.Clear();
+                CampSleepawayContext dbContext = new CampSleepawayContext();
+                RemoveCamper removeCamper = new RemoveCamper(dbContext);
+                removeCamper.RemoveCamperFromDatabase();
+                Console.ReadKey();
+                Console.Clear();
+            }
+        if (option == 4) 
             {
                 Console.Clear();
                 CampSleepawayContext dbContext = new CampSleepawayContext();
