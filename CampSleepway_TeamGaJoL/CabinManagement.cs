@@ -37,13 +37,13 @@ namespace CampSleepway_TeamGaJoL
                     foreach (var camper in cabin.Campers)
                     {
 
-                        var nextOfKin = nextOfKins.FirstOrDefault(n => n.CamperId == camper.Id);
+                        var nextOfKinsForCamper = nextOfKins.Where(n => n.CamperId == camper.Id).ToList();
 
                         Console.WriteLine($" - CamperId: {camper.Id}. {camper.FirstName} {camper.LastName}");
 
-                        if (nextOfKin != null)
+                      foreach( var nextofkin in nextOfKinsForCamper)
                         {
-                            Console.WriteLine($"   NextOfKin associated to {camper.FirstName}: {nextOfKin.FirstName} {nextOfKin.LastName}");
+                            Console.WriteLine($"   NextOfKin associated to {camper.FirstName}: {nextofkin.FirstName} {nextofkin.LastName} ");
                         }
 
                     }
@@ -62,7 +62,7 @@ namespace CampSleepway_TeamGaJoL
         {
 
             Console.WriteLine("\n Who do you want to assign to a cabin?");
-            var persons = context.Persons.ToList();
+            var persons = context.Persons.Where(person => person.GetType() != typeof(NextOfKin)).ToList();
 
             foreach (var person in persons)
             {
