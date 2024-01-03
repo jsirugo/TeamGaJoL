@@ -78,11 +78,17 @@ class Program
                 });
                 if (option2 == 0)
                 {
+                Console.Clear();
                 searchCabin.DisplayCabins();
+                    Console.ReadKey();
+                    Console.Clear();
                 }
                 if (option2 == 1)
                 {
-                searchCounselor.DisplayCounselors();
+                    Console.Clear();
+                    searchCounselor.DisplayCounselors();
+                    Console.ReadKey();
+                    Console.Clear();
                 }
             }
         if(option == 5)
