@@ -24,30 +24,40 @@ namespace CampSleepway_TeamGaJoL
             {
                 Console.WriteLine($"Cabin ID: {cabin.CabinId}, Name: {cabin.Name}");
             }
+
             Console.WriteLine("Enter the ID of the cabin you want displayed");
             int cabinId = int.Parse(Console.ReadLine());
 
-            var selectedCabin = context.Cabins.Include(c => c.Campers).Include(c => c.Counselor)
-                                      .FirstOrDefault(c => c.CabinId == cabinId);
+            var selectedCabin = context.Cabins
+                .Include(c => c.Campers)
+                .Include(c => c.Counselor)
+                .FirstOrDefault(c => c.CabinId == cabinId);
 
             if (selectedCabin != null)
             {
-
                 Console.WriteLine($"Cabin ID: {selectedCabin.CabinId}, Name: {selectedCabin.Name}");
-                Console.WriteLine($"CounselorID: {selectedCabin.Counselor.Id}, Name: {selectedCabin.Counselor.FirstName} {selectedCabin.Counselor.LastName}");
 
-                if (selectedCabin.Campers.Any())
+                if (selectedCabin.Counselor != null)
                 {
-                    Console.WriteLine("Occupants");
+                    Console.WriteLine($"CounselorID: {selectedCabin.Counselor.Id}, Name: {selectedCabin.Counselor.FirstName} {selectedCabin.Counselor.LastName}");
 
-                    foreach (var camper in selectedCabin.Campers)
+                    if (selectedCabin.Campers.Any())
                     {
-                        Console.WriteLine($" - CamperId: {camper.Id}. {camper.FirstName} {camper.LastName}");
+                        Console.WriteLine("Occupants");
+
+                        foreach (var camper in selectedCabin.Campers)
+                        {
+                            Console.WriteLine($" - CamperId: {camper.Id}. {camper.FirstName} {camper.LastName}");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No occupants!");
                     }
                 }
                 else
                 {
-                    Console.WriteLine("No occupants!");
+                    Console.WriteLine("Warning: This cabin does not have a counselor!");
                 }
             }
             else
