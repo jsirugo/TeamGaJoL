@@ -27,11 +27,18 @@ namespace CampSleepway_TeamGaJoL
 
                 if (camper != null)
                 {
+                    var nextOfKins = context.NextOfKins.Where(n => n.CamperId == camperId).ToList();
                     var cabin = context.Cabins.Include(c => c.Campers).FirstOrDefault(c => c.Campers.Contains(camper));
 
                     if (cabin != null)
                     {
                         cabin.Campers.Remove(camper);
+                    }
+
+                    // Ta bort relaterade NextOfKin
+                    foreach (var nextOfKin in nextOfKins)
+                    {
+                        context.NextOfKins.Remove(nextOfKin);
                     }
 
                     context.Campers.Remove(camper);
