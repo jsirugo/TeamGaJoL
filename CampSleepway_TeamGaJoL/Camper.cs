@@ -14,6 +14,6 @@ namespace CampSleepway_TeamGaJoL
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
 
-      //  public List<NextOfKin>? NextofKins { get; set; } // får ha nextofkin, måste inte
+     
     }
 }

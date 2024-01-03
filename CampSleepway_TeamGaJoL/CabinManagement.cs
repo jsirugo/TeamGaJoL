@@ -38,16 +38,16 @@ namespace CampSleepway_TeamGaJoL
                     {
 
                         var nextOfKinsForCamper = nextOfKins.Where(n => n.CamperId == camper.Id).ToList();
-
+                        //får med relaterade släktingar i en lista
                         Console.WriteLine($" - CamperId: {camper.Id}. {camper.FirstName} {camper.LastName}");
 
-                      foreach( var nextofkin in nextOfKinsForCamper)
-                        {
+                        foreach (var nextofkin in nextOfKinsForCamper)
+                        { //skriver ut varje släkting till respektive camper
                             Console.WriteLine($"   NextOfKin associated to {camper.FirstName}: {nextofkin.FirstName} {nextofkin.LastName} ");
                         }
 
                     }
-                   
+
                 }
                 else
                 {
@@ -55,18 +55,18 @@ namespace CampSleepway_TeamGaJoL
                 }
 
             }
-            
+
         }
 
         public void PersonSelecter()
         {
 
             Console.WriteLine("\n Who do you want to assign to a cabin?");
-            var persons = context.Persons.Where(person => person.GetType() != typeof(NextOfKin)).ToList();
+            var persons = context.Persons.Where(person => person.GetType() != typeof(NextOfKin)).ToList(); //ignorerar nextofkin
 
             foreach (var person in persons)
-            {
-                if (person is Counselor counselor) { Console.WriteLine($"{person.Id}. {person.FirstName} {person.LastName}" + " (Counselor)"); } // visar att person är counselor om så är fallet
+            {//                                                                                Visar att person är counselor om så är fallet
+                if (person is Counselor counselor) { Console.WriteLine($"{person.Id}. {person.FirstName} {person.LastName}" + " (Counselor)"); }
 
                 else
                 {
@@ -80,8 +80,7 @@ namespace CampSleepway_TeamGaJoL
             if (selectedPerson != null)
             {
                 var cabinAssignmentManager = new CabinManager(context);
-                AssignToCabin(selectedPerson);
-                
+                AssignToCabin(selectedPerson); //Skickar person till nästa metod
             }
             else
             {
@@ -92,14 +91,14 @@ namespace CampSleepway_TeamGaJoL
         public void AssignToCabin(Person person)
         {
             if (person is Camper camper)
-            {
+            { //om mottagen person är "camper":
                 Console.WriteLine("Available Cabins:");
                 DisplayAvailableCabins();
                 Console.Write("Enter the Cabin ID where the Camper should be assigned: ");
 
                 if (int.TryParse(Console.ReadLine(), out int cabinId))
                 {
-                    AssignCamperToCabin(camper, cabinId);
+                    AssignCamperToCabin(camper, cabinId); //skickas vidare till nästa metod
                 }
                 else
                 {
@@ -107,14 +106,14 @@ namespace CampSleepway_TeamGaJoL
                 }
             }
             else if (person is Counselor counselor)
-            {
+            {  //om mottagen person är "counselor":
                 Console.WriteLine("Available Cabins:");
                 DisplayAvailableCabins();
                 Console.Write("Enter the Cabin ID where the Counselor should be assigned: ");
 
                 if (int.TryParse(Console.ReadLine(), out int cabinId))
                 {
-                    AssignCounselorToCabin(counselor, cabinId);
+                    AssignCounselorToCabin(counselor, cabinId); //skickas vidare till nästa metod
                 }
                 else
                 {
@@ -128,7 +127,7 @@ namespace CampSleepway_TeamGaJoL
             try
             {
                 var cabin = context.Cabins.Include(c => c.Campers).FirstOrDefault(c => c.CabinId == cabinId);
-
+                //                  kollar så att maxkapaciteten inte överskrids
                 if (cabin != null && cabin.Campers.Count < cabin.MaxCapacity)
                 {
                     var counselorInCabin = context.Cabins
@@ -136,7 +135,7 @@ namespace CampSleepway_TeamGaJoL
                         .FirstOrDefault(c => c.CabinId == cabinId)?.Counselor;
 
                     if (counselorInCabin != null)
-                    {
+                    { //om counselor finns i cabin, exekvera
                         cabin.Campers.Add(camper);
                         context.SaveChanges();
                         Console.WriteLine($"Camper {camper.FirstName} {camper.LastName} assigned to Cabin {cabin.CabinId}.");

@@ -71,7 +71,7 @@ namespace CampSleepway_TeamGaJoL
             DateTime startDate = DateTime.Parse(Console.ReadLine());
 
             Console.Write("Camper End Date (press enter if none): (yyyy-MM-dd) ");
-            DateTime? endDate = DateTime.TryParse(Console.ReadLine(), out var result) ? result : (DateTime?)null;
+            DateTime? endDate = DateTime.TryParse(Console.ReadLine(), out var result) ? result : (DateTime?)null; 
 
           
             var camper = new Camper

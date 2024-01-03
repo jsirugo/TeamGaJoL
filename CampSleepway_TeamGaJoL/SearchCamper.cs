@@ -26,6 +26,7 @@ namespace CampSleepway_TeamGaJoL
             }
 
             Console.WriteLine("Enter the ID of the cabin you want displayed");
+            //Från listan väljer nu användaren en stuga man vill se information om
             int cabinId = int.Parse(Console.ReadLine());
 
             var selectedCabin = context.Cabins

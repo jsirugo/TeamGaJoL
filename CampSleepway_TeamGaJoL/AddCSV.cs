@@ -73,7 +73,7 @@ namespace CampSleepway_TeamGaJoL
                             Age = age,
                             StartDate = DateTime.Now,
                             EndDate = null,
-                           // NextofKins = new List<NextOfKin>()
+
                         };
 
                         persons.Add(camper);
@@ -89,7 +89,7 @@ namespace CampSleepway_TeamGaJoL
                             Age = age,
                             StartDate = DateTime.Now,
                             EndDate = null,
-                           // NextOfKins = new List<NextOfKin>()
+
                         };
 
                         persons.Add(counselor);
