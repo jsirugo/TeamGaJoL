@@ -1,6 +1,8 @@
 ﻿using Azure;
 using CampSleepway_TeamGaJoL;
 using Microsoft.EntityFrameworkCore;
+//Johannes Sirugo, Gabriel Wedin, Lillebjörn Söderberg
+//Team GaJoL
 class Program
 {
     static void Main()
