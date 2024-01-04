@@ -50,8 +50,6 @@ class Program
                 cabinManager.DisplayCabinOccupants();
                 assignperson.PersonSelecter();
 
-
-
                 Console.ReadKey();
                 Console.Clear();
             }
@@ -112,9 +110,6 @@ class Program
             {
                 running = false;
             }
-
-
         }
-
     }
 }

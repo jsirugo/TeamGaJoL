@@ -30,10 +30,15 @@ namespace CampSleepway_TeamGaJoL
             var connectionString = configuration.GetConnectionString("Local");
 
             optionsBuilder.UseSqlServer(connectionString)
-                .LogTo(Console.WriteLine,
-                new[] { DbLoggerCategory.Database.Name },
-                LogLevel.Information)
-                .EnableSensitiveDataLogging();
+            .EnableSensitiveDataLogging()
+            .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddFilter((category, level) => level >= LogLevel.Warning)));
+
+            // Dataloggning vi använde för uppbyggnad av program, utbytt mot ovan för att spara plats i consollen
+            //optionsBuilder.UseSqlServer(connectionString)
+            //    .LogTo(Console.WriteLine,
+            //    new[] { DbLoggerCategory.Database.Name },
+            //    LogLevel.Information)
+            //    .EnableSensitiveDataLogging();
         }
     }
 
