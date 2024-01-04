@@ -39,7 +39,7 @@ namespace CampSleepway_TeamGaJoL
             int age = int.Parse(Console.ReadLine());
 
             Console.Write("Enter a number to be assigned to the different person types: (Camper, Counselor, NextOfKin): ");
-                Console.WriteLine("\nPress  '1' to be assigned to 'Camper' \nPress '2' to be assigned to 'Counselor'\nPress '3' to be assigned to NextOfKin"   );
+                Console.WriteLine("\nPress '1' to be assigned to 'Camper' \nPress '2' to be assigned to 'Counselor'\nPress '3' to be assigned to NextOfKin"   );
             int personType = int.Parse(Console.ReadLine());
 
                 if (personType == 1)

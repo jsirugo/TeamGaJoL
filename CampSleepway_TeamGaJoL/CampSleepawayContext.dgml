@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph GraphDirection="LeftToRight" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="Cabin" Category="EntityType" Annotations="Relational:TableName: Cabins RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" BaseClass="" Bounds="-161.027531589293,249.840079205374,291.663371073405,197.368085742187" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="Cabin" Name="Cabin" UseManualLocation="True" />
+    <Node Id="Cabin.CabinId" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="-29.7344502766927,290.226623297171,83.6166666666667,25.6599999999999" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="CabinId (int)" MaxLength="None" Name="CabinId" PropertyAccessMode="PropertyAccessMode.Default" Type="int" UseManualLocation="True" ValueGenerated="ValueGenerated.OnAdd" />
+    <Node Id="Cabin.Campers" Category="Navigation Collection" Bounds="-140.564696350098,289.840179205374,80.83,25.6599999999999" Dependent="Camper" Field="" Inverse="" Label="Campers (*)" Name="Campers" Principal="" PropertyAccessMode="PropertyAccessMode.Default" Type="List&lt;Camper&gt;" UseManualLocation="True" />
+    <Node Id="Cabin.Counselor" Category="Navigation Property" Bounds="-140.344100977575,345.887206793264,89.1933333333333,25.6599999999999" Dependent="" Field="" Inverse="" Label="Counselor (1)" Name="Counselor" Principal="Counselor" PropertyAccessMode="PropertyAccessMode.Default" Type="Counselor" />
+    <Node Id="Cabin.CounselorId" Category="Property Foreign" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="-1.05750328424449,401.548064947561,111.693333333333,25.6599999999999" Field="nofield" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="False" IsRequired="False" IsShadow="True" IsUnicode="True" Label="CounselorId (int?)" MaxLength="None" Name="CounselorId" PropertyAccessMode="PropertyAccessMode.Default" Type="int?" ValueGenerated="None" />
+    <Node Id="Cabin.MaxCapacity" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="-141.027503284245,401.548064947561,109.97,25.6599999999999" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="MaxCapacity (int)" MaxLength="None" Name="MaxCapacity" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="None" />
+    <Node Id="Cabin.Name" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="-21.1507676442416,345.887206793264,90.9533333333334,25.6599999999999" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="Name (string)" MaxLength="None" Name="Name" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="Camper" Category="EntityType" Annotations="Relational:Schema: Relational:TableName: Campers RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" BaseClass="Person" Bounds="-176.65889712765,750.280037939453,169.266666666667,196.981641650391" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="Camper" Name="Camper" UseManualLocation="True" />
+    <Node Id="Camper.CabinId" Category="Property Foreign" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="-156.657640006882,790.280137939453,88.8933333333333,25.6600000000001" Field="nofield" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="False" IsRequired="False" IsShadow="True" IsUnicode="True" Label="CabinId (int?)" MaxLength="None" Name="CabinId" PropertyAccessMode="PropertyAccessMode.Default" Type="int?" ValueGenerated="None" />
+    <Node Id="Camper.EndDate" Category="Property Optional" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="-156.65889712765,901.601579589844,129.266666666667,25.6600000000001" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="False" IsShadow="False" IsUnicode="True" Label="EndDate (DateTime?)" MaxLength="None" Name="EndDate" PropertyAccessMode="PropertyAccessMode.Default" Type="DateTime?" ValueGenerated="None" />
+    <Node Id="Camper.StartDate" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="-156.657515902064,845.940812988281,128.376666666667,25.6600000000001" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="StartDate (DateTime)" MaxLength="None" Name="StartDate" PropertyAccessMode="PropertyAccessMode.Default" Type="DateTime" ValueGenerated="None" />
+    <Node Id="Counselor" Category="EntityType" Annotations="Relational:Schema: Relational:TableName: Counselors RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" BaseClass="Person" Bounds="359.842965935444,751.985765609139,252.695558878581,196.98197734375" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="Counselor" Name="Counselor" UseManualLocation="True" />
+    <Node Id="Counselor.Counselor" Category="Navigation Property" Bounds="379.842976493256,791.985848604259,89.1933333333333,25.6599999999999" Dependent="" Field="" Inverse="" Label="Counselor (1)" Name="Counselor" Principal="" PropertyAccessMode="PropertyAccessMode.Default" Type="{'Id'}" />
+    <Node Id="Counselor.EndDate" Category="Property Optional" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="382.116398937918,903.307748018322,129.266666666667,25.6599999999999" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="False" IsShadow="False" IsUnicode="True" Label="EndDate (DateTime?)" MaxLength="None" Name="EndDate" PropertyAccessMode="PropertyAccessMode.Default" Type="DateTime?" ValueGenerated="None" />
+    <Node Id="Counselor.NextOfKins" Category="Navigation Collection" Bounds="499.03865744215,791.985787569103,93.5,25.6599999999999" Dependent="NextOfKin" Field="" Inverse="Counselor" Label="NextOfKins (*)" Name="NextOfKins" Principal="" PropertyAccessMode="PropertyAccessMode.Default" Type="ICollection&lt;NextOfKin&gt;" />
+    <Node Id="Counselor.StartDate" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="382.114713146902,847.646615205822,128.376666666667,25.6599999999999" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="StartDate (DateTime)" MaxLength="None" Name="StartDate" PropertyAccessMode="PropertyAccessMode.Default" Type="DateTime" ValueGenerated="None" />
+    <Node Id="IModel" Category="Model" Annotations="BaseTypeDiscoveryConvention:DerivedTypes: System.Collections.Generic.Dictionary`2[System.Type,System.Collections.Generic.List`1[Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType]] Relational:MaxIdentifierLength: 128 RelationshipDiscoveryConvention:InverseNavigationCandidates: System.Collections.Generic.Dictionary`2[System.Type,System.Collections.Generic.SortedSet`1[System.Type]] SqlServer:ValueGenerationStrategy: IdentityColumn" Bounds="-196.658907063802,209.8399297712,829.197588094076,759.127996058878" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" Label="CampSleepawayContext" ProductVersion="8.0.0" PropertyAccessMode="PropertyAccessMode.Default" UseManualLocation="True" />
+    <Node Id="NextOfKin" Category="EntityType" Annotations="Relational:Schema: Relational:TableName: NextOfKins RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" BaseClass="Person" Bounds="61.0533022134411,749.12301492314,259.710079650879,196.980578320313" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="NextOfKin" Name="NextOfKin" UseManualLocation="True" />
+    <Node Id="NextOfKin.Camper" Category="Navigation Property" Bounds="81.4694838581653,789.123186035156,77.27,25.66" Dependent="" Field="" Inverse="" Label="Camper (1)" Name="Camper" Principal="Camper" PropertyAccessMode="PropertyAccessMode.Default" Type="Camper" />
+    <Node Id="NextOfKin.CamperId" Category="Property Foreign" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="200.993241792736,844.783128662109,99.77,25.66" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="False" IsRequired="False" IsShadow="False" IsUnicode="True" Label="CamperId (int?)" MaxLength="None" Name="CamperId" PropertyAccessMode="PropertyAccessMode.Default" Type="int?" ValueGenerated="None" />
+    <Node Id="NextOfKin.Counselor" Category="Navigation Property" Bounds="188.740467948335,789.123186035156,89.1933333333334,25.66" Dependent="" Field="" Inverse="NextOfKins" Label="Counselor (1)" Name="Counselor" Principal="Counselor" PropertyAccessMode="PropertyAccessMode.Default" Type="Counselor" />
+    <Node Id="NextOfKin.CounselorId" Category="Property Foreign" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="83.3476914590768,900.443468017578,111.693333333333,25.66" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="False" IsRequired="False" IsShadow="False" IsUnicode="True" Label="CounselorId (int?)" MaxLength="None" Name="CounselorId" PropertyAccessMode="PropertyAccessMode.Default" Type="int?" ValueGenerated="None" />
+    <Node Id="NextOfKin.NextOfKin" Category="Navigation Property" Bounds="81.0532765827747,844.783128662109,89.9400000000001,25.66" Dependent="" Field="" Inverse="" Label="NextOfKin (1)" Name="NextOfKin" Principal="" PropertyAccessMode="PropertyAccessMode.Default" Type="{'Id'}" />
+    <Node Id="Person" Category="EntityType" Annotations="" BaseClass="" Bounds="274.195454776593,257.381466191035,296.644508802694,196.981428027344" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="Person" Name="Person" UseManualLocation="True" />
+    <Node Id="Person.Age" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="378.645534104953,297.380870955901,64.52,25.6599999999999" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="Age (int)" MaxLength="None" Name="Age" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="None" />
+    <Node Id="Person.FirstName" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="435.668426764458,353.042003768401,112.633333333333,25.6599999999999" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="FirstName (string)" MaxLength="None" Name="FirstName" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="Person.Id" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="294.742563727348,297.380993026214,53.9033333333333,25.6599999999999" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="Id (int)" MaxLength="None" Name="Id" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="ValueGenerated.OnAdd" />
+    <Node Id="Person.LastName" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="294.195707648247,353.041942733245,111.473333333333,25.6599999999999" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="LastName (string)" MaxLength="None" Name="LastName" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="Person.PhoneNumber" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="297.203859707166,408.702770369964,135.616666666667,25.6599999999999" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="PhoneNumber (string)" MaxLength="None" Name="PhoneNumber" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="Person.Sex" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="473.166432135552,297.380993026214,77.6733333333334,25.6599999999999" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="Sex (string)" MaxLength="None" Name="Sex" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+  </Nodes>
+  <Links>
+    <Link Source="Cabin" Target="Cabin.CabinId" Category="Contains" />
+    <Link Source="Cabin" Target="Cabin.Campers" Category="Contains" />
+    <Link Source="Cabin" Target="Cabin.Counselor" Category="Contains" />
+    <Link Source="Cabin" Target="Cabin.CounselorId" Category="Contains" />
+    <Link Source="Cabin" Target="Cabin.MaxCapacity" Category="Contains" />
+    <Link Source="Cabin" Target="Cabin.Name" Category="Contains" />
+    <Link Source="Cabin" Target="Counselor" Category="Foreign Key" Annotations="" Bounds="83.376913026483,447.208164947561,298.073540019698,298.410050371484" From="Cabin.CounselorId" IsUnique="False" Label="1:*" LabelBounds="161.639008738388,507.068590559895,13.81,15.6600000000001" Name="Cabin -&gt; Counselor" To="Counselor.Id" />
+    <Link Source="Camper" Target="Cabin" Category="Foreign Key" Annotations="" Bounds="-76.8989844302071,456.103860887262,45.1806498506916,294.176177052191" From="Camper.CabinId" IsUnique="False" Label="1:*" LabelBounds="-72.1189312801626,595.058341987467,13.8100000000001,15.6600000000002" Name="Camper -&gt; Cabin" To="Cabin.CabinId" />
+    <Link Source="Camper" Target="Camper.CabinId" Category="Contains" />
+    <Link Source="Camper" Target="Camper.EndDate" Category="Contains" />
+    <Link Source="Camper" Target="Camper.StartDate" Category="Contains" />
+    <Link Source="Camper" Target="Person" Category="Foreign Key" Annotations="" Bounds="-7.3922304609834,460.588690690578,320.595026892447,307.108990455495" From="Camper.Id" IsUnique="True" Label="1:1" LabelBounds="58.6309979159034,671.416880311289,15.2466666666668,15.6600000000001" Name="Camper -&gt; Person" To="Person.Id" />
+    <Link Source="Counselor" Target="Counselor.Counselor" Category="Contains" />
+    <Link Source="Counselor" Target="Counselor.EndDate" Category="Contains" />
+    <Link Source="Counselor" Target="Counselor.NextOfKins" Category="Contains" />
+    <Link Source="Counselor" Target="Counselor.StartDate" Category="Contains" />
+    <Link Source="Counselor" Target="Person" Category="Foreign Key" Annotations="" Bounds="436.346068499523,463.289231141096,37.1654162790592,288.696534468042" From="Counselor.Id" IsUnique="True" Label="1:1" LabelBounds="435.681974885271,600.06286150481,15.2466666666667,15.66" Name="Counselor -&gt; Person" To="Person.Id" />
+    <Link Source="IModel" Target="Cabin" Category="Contains" />
+    <Link Source="IModel" Target="Camper" Category="Contains" />
+    <Link Source="IModel" Target="Counselor" Category="Contains" />
+    <Link Source="IModel" Target="NextOfKin" Category="Contains" />
+    <Link Source="IModel" Target="Person" Category="Contains" />
+    <Link Source="NextOfKin" Target="Camper" Category="Foreign Key" Annotations="" Bounds="1.60769421731835,848.144574129579,59.4456079961227,0.243207125067215" From="NextOfKin.CamperId" IsUnique="False" Label="1:*" LabelBounds="24.4336806563655,852.266177692253,13.81,15.6599999999999" Name="NextOfKin -&gt; Camper" To="Camper.Id" />
+    <Link Source="NextOfKin" Target="Counselor" Category="Foreign Key" Annotations="" Bounds="320.76338186432,848.872550944139,30.0800072130116,0.291695683956732" From="NextOfKin.CounselorId" IsUnique="False" Label="1:*" LabelBounds="328.917779214158,829.358398781696,13.8099999999999,15.6600000000001" Name="NextOfKin -&gt; Counselor" To="Counselor.Id" />
+    <Link Source="NextOfKin" Target="NextOfKin.Camper" Category="Contains" />
+    <Link Source="NextOfKin" Target="NextOfKin.CamperId" Category="Contains" />
+    <Link Source="NextOfKin" Target="NextOfKin.Counselor" Category="Contains" />
+    <Link Source="NextOfKin" Target="NextOfKin.CounselorId" Category="Contains" />
+    <Link Source="NextOfKin" Target="NextOfKin.NextOfKin" Category="Contains" />
+    <Link Source="NextOfKin" Target="Person" Category="Foreign Key" Annotations="" Bounds="237.297127588895,462.504974896784,134.996687561018,286.618040026356" From="NextOfKin.Id" IsUnique="True" Label="1:1" LabelBounds="287.739453440869,589.301793049381,15.2466666666666,15.6600000000001" Name="NextOfKin -&gt; Person" To="Person.Id" />
+    <Link Source="Person" Target="Person.Age" Category="Contains" />
+    <Link Source="Person" Target="Person.FirstName" Category="Contains" />
+    <Link Source="Person" Target="Person.Id" Category="Contains" />
+    <Link Source="Person" Target="Person.LastName" Category="Contains" />
+    <Link Source="Person" Target="Person.PhoneNumber" Category="Contains" />
+    <Link Source="Person" Target="Person.Sex" Category="Contains" />
+  </Links>
+  <Categories>
+    <Category Id="Contains" Label="Contains" Description="Whether the source of the link contains the target object" CanBeDataDriven="False" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Contained By" IsContainment="True" OutgoingActionLabel="Contains" />
+    <Category Id="EntityType" />
+    <Category Id="Foreign Key" />
+    <Category Id="Model" />
+    <Category Id="Navigation Collection" />
+    <Category Id="Navigation Property" />
+    <Category Id="Property Foreign" />
+    <Category Id="Property Optional" />
+    <Category Id="Property Primary" />
+    <Category Id="Property Required" />
+  </Categories>
+  <Properties>
+    <Property Id="AfterSaveBehavior" Group="Property Flags" DataType="System.String" />
+    <Property Id="Annotations" Description="Annotations" Group="Model Properties" DataType="System.String" />
+    <Property Id="BaseClass" Description="Base class" Group="Model Properties" DataType="System.String" />
+    <Property Id="BeforeSaveBehavior" Group="Property Flags" DataType="System.String" />
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="CanBeDataDriven" Label="CanBeDataDriven" Description="CanBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CanLinkedNodesBeDataDriven" Label="CanLinkedNodesBeDataDriven" Description="CanLinkedNodesBeDataDriven" DataType="System.Boolean" />
+    <Property Id="ChangeTrackingStrategy" Description="Change tracking strategy" Group="Model Properties" DataType="System.String" />
+    <Property Id="Dependent" Description="Dependent entity" Group="Model Properties" DataType="System.String" />
+    <Property Id="Expression" DataType="System.String" />
+    <Property Id="Field" Description="Backing field" Group="Model Properties" DataType="System.String" />
+    <Property Id="From" Description="Target property" Group="Model Properties" DataType="System.String" />
+    <Property Id="GraphDirection" DataType="Microsoft.VisualStudio.Diagrams.Layout.LayoutOrientation" />
+    <Property Id="Group" Label="Group" Description="Display the node as a group" DataType="Microsoft.VisualStudio.GraphModel.GraphGroupStyle" />
+    <Property Id="GroupLabel" DataType="System.String" />
+    <Property Id="IncomingActionLabel" Label="IncomingActionLabel" Description="IncomingActionLabel" DataType="System.String" />
+    <Property Id="Inverse" Description="Inverse entity" Group="Model Properties" DataType="System.String" />
+    <Property Id="IsAbstract" Label="IsAbstract" Description="IsAbstract" Group="Model Properties" DataType="System.Boolean" />
+    <Property Id="IsAlternateKey" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsConcurrencyToken" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsContainment" DataType="System.Boolean" />
+    <Property Id="IsEnabled" DataType="System.Boolean" />
+    <Property Id="IsForeignKey" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsIndexed" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsPrimaryKey" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsRequired" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsShadow" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsUnicode" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsUnique" Group="Model Properties" DataType="System.Boolean" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="LabelBounds" DataType="System.Windows.Rect" />
+    <Property Id="MaxLength" DataType="System.String" />
+    <Property Id="Name" Group="Model Properties" DataType="System.String" />
+    <Property Id="OutgoingActionLabel" Label="OutgoingActionLabel" Description="OutgoingActionLabel" DataType="System.String" />
+    <Property Id="Principal" Description="Principal entity" Group="Model Properties" DataType="System.String" />
+    <Property Id="ProductVersion" Label="Product Version" Description="EF Core product version" Group="Model Properties" DataType="System.String" />
+    <Property Id="PropertyAccessMode" Group="Property Flags" DataType="System.String" />
+    <Property Id="TargetType" DataType="System.Type" />
+    <Property Id="To" Description="Source property" Group="Model Properties" DataType="System.String" />
+    <Property Id="Type" Description="CLR data type" Group="Model Properties" DataType="System.String" />
+    <Property Id="UseManualLocation" DataType="System.Boolean" />
+    <Property Id="Value" DataType="System.String" />
+    <Property Id="ValueGenerated" Group="Property Flags" DataType="System.String" />
+    <Property Id="ValueLabel" DataType="System.String" />
+  </Properties>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="EntityType" ValueLabel="True">
+      <Condition Expression="HasCategory('EntityType')" />
+      <Setter Property="Background" Value="#FFC0C0C0" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Primary" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Primary')" />
+      <Setter Property="Background" Value="#FF008000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Optional" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Optional')" />
+      <Setter Property="Background" Value="#FF808040" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Foreign" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Foreign')" />
+      <Setter Property="Background" Value="#FF8080FF" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Required" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Required')" />
+      <Setter Property="Background" Value="#FFC0A000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Navigation Property" ValueLabel="True">
+      <Condition Expression="HasCategory('Navigation Property')" />
+      <Setter Property="Background" Value="#FF990000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Navigation Collection" ValueLabel="True">
+      <Condition Expression="HasCategory('Navigation Collection')" />
+      <Setter Property="Background" Value="#FFFF3232" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Model" ValueLabel="True">
+      <Condition Expression="HasCategory('Model')" />
+      <Setter Property="Background" Value="#FFFFFFFF" />
+    </Style>
+  </Styles>
+</DirectedGraph>
