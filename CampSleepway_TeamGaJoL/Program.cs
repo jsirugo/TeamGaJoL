@@ -12,7 +12,7 @@ class Program
             {
             "Add person to database", // Potentiellt lägga in så man kan ange csv fil att läsas in utöver att mata in manuellt
             "Add cabin",
-            "Assign a camper to a cabin",
+            "Assign a camper/counselor to a cabin",
             "Remove a camper from the camp",
             "Search for campers in Camp Sleepaway",
             "Show a list of all campers sorted on cabins",
